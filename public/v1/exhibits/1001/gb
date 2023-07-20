@@ -1,0 +1,18 @@
+{
+  "nextExhibitId": "1002",
+  "exhibitionId": "1000",
+  "subtitle": "Unknown artist,<br> c. 1000 b.c.",
+  "prevExhibitId": "1000",
+  "artistId": "1000",
+  "langOptions": [
+    "gb",
+    "pl"
+  ],
+  "lang": "gb",
+  "imageUrl": "/asset/exhibits/1001/image/square.jpg",
+  "number": 2,
+  "audioUrl": "/asset/exhibits/1001/audio/gb.mp3",
+  "description": "Mona Lisa, also called Portrait of Lisa Gherardini, wife of Francesco del Giocondo, Italian La Gioconda, or French La Joconde, oil painting on a poplar wood panel by Leonardo da Vinci, probably the world’s most famous painting. It was painted sometime between 1503 and 1519, when Leonardo was living in Florence, and it now hangs in the Louvre Museum, Paris, where it remained an object of pilgrimage in the 21st century. The sitter’s mysterious smile and her unproven identity have made the painting a source of ongoing investigation and fascination.",
+  "id": "1001",
+  "title": "Venus of Milo"
+}

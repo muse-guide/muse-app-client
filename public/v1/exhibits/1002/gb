@@ -1,0 +1,17 @@
+{
+  "exhibitionId": "1000",
+  "subtitle": "Michelangelo Merisi da Carravagio,<br>Oil on canvas, Florence 1602",
+  "prevExhibitId": "1001",
+  "artistId": "1000",
+  "langOptions": [
+    "gb",
+    "pl"
+  ],
+  "lang": "gb",
+  "imageUrl": "/asset/exhibits/1002/image/img.png",
+  "number": 3,
+  "audioUrl": "/asset/exhibits/1002/audio/gb.mp3",
+  "description": "Mona Lisa, also called Portrait of Lisa Gherardini, wife of Francesco del Giocondo, Italian La Gioconda, or French La Joconde, oil painting on a poplar wood panel by Leonardo da Vinci, probably the world’s most famous painting. It was painted sometime between 1503 and 1519, when Leonardo was living in Florence, and it now hangs in the Louvre Museum, Paris, where it remained an object of pilgrimage in the 21st century. The sitter’s mysterious smile and her unproven identity have made the painting a source of ongoing investigation and fascination.",
+  "id": "1002",
+  "title": "Cena di Emmaus"
+}

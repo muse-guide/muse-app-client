@@ -1,0 +1,17 @@
+{
+  "nextExhibitId": "1001",
+  "exhibitionId": "1000",
+  "subtitle": "Leonardo da Vinci, Italian 1443-1532<br>Oil on canvas, Genua, 1503",
+  "artistId": "1000",
+  "langOptions": [
+    "gb",
+    "pl"
+  ],
+  "lang": "gb",
+  "imageUrl": "/asset/exhibits/1000/image/square.jpg",
+  "number": 1,
+  "audioUrl": "/asset/exhibits/1000/audio/gb.mp3",
+  "description": "Mona Lisa, also called Portrait of Lisa Gherardini, wife of Francesco del Giocondo, Italian La Gioconda, or French La Joconde, oil painting on a poplar wood panel by Leonardo da Vinci, probably the world’s most famous painting. It was painted sometime between 1503 and 1519, when Leonardo was living in Florence, and it now hangs in the Louvre Museum, Paris, where it remained an object of pilgrimage in the 21st century. The sitter’s mysterious smile and her unproven identity have made the painting a source of ongoing investigation and fascination.",
+  "id": "1000",
+  "title": "Mona Lisa"
+}

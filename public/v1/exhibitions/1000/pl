@@ -1,0 +1,38 @@
+{
+    "id": "1000",
+    "institutionId": "1000",
+    "lang": "pl",
+    "langOptions": ["gb", "pl"],
+    "title": "Galeria Sztuki Dawnej",
+    "subtitle": "Europejskie i Staropolskie Rzemiosło Artystyczne, Malarstwo i Rzeźba od XV do XVIII wieku",
+    "description": "<p style=\"margin-top: 0\"> Z dawnej Galerii Sztuki Zdobniczej oraz Galerii Dawnego Malarstwa Europejskiego i Staropolskiego Muzeum Narodowego powstała nowa Galeria Sztuki Dawnej. Łącząc gatunki techniczne chcemy odejść od tradycyjnego dyskursu historii sztuki, który rozdzielał „wysoką” sztukę obrazową – malarstwo, rzeźbę, rysunek i grafikę – od rzemiosła artystycznego, uznając je za dziedzinę użytkową. Tymczasem w dawnych epokach taki podział nie istniał. W zasadzie wszystkie te dziedziny sztuki traktowano równorzędnie. Jeśli już którąś wywyższano, to wcale nie malarstwo czy rzeźbę, lecz złotnictwo i produkcję tapiserii. Samo pojęcie „sztuka” – łacińska ars (a za nią włoskie, francuskie i angielskie wersje: arte, l’art, the art), grecka téchne, niemiecka i niderlandzka Kunst – oznaczało pierwotnie kunszt, sprawność wykonania, rzemiosło. Najwyżej ceniono w malarstwie i rzeźbie właśnie rzemieślniczą, wirtuozerską jakość wykonania.</p><p> <img style=\"width: 100%\" src=\"/asset/exhibitions/1000/image/article1.jpg\" alt=\"not found\" /></p><p>Obrazowy charakter malarstwa i rzeźby – poddanych zasadzie naśladowania rzeczywistości (mimesis) – też nie czyni tych gatunków osobnymi. Jak pokazuje nasza ekspozycja, znakomita większość dzieł dawnego rzemiosła artystycznego miała wprawdzie dekoracyjny charakter, ale zawierała przedstawienia figuratywne, stanowiące przecież istotę malarstwa i rzeźby. Rzemiosło artystyczne łączyły z malarstwem i rzeźbą wspólne cele i funkcje, a także przestrzenie, w jakich je gromadzono i wystawiano. I taki właśnie jest podział galerii – na „przestrzenie społeczne”: 1) pałac, willa, dwór; 2) kościół, kaplica i ołtarz domowy; 3) miasto. Innymi słowy: 1) kultura dworska, 2) kultura religijna, 3) kultura miejska.</p>",
+    "imageUrls": [
+        "/asset/exhibitions/1000/image/article1.jpg",
+        "/asset/exhibitions/1000/image/img1.jpg",
+        "/asset/exhibitions/1000/image/img2.jpg",
+        "/asset/exhibitions/1000/image/img3.jpg"
+    ],
+    "exhibits": [
+        {
+            "id": "1000",
+            "number": 1,
+            "title": "Mona Lisa",
+            "audioLength": 100,
+            "thumbnailUrl": "/asset/exhibits/1000/image/square.jpg"
+        },
+        {
+            "id": "1001",
+            "number": 2,
+            "title": "Wenus z Milo",
+            "audioLength": 200,
+            "thumbnailUrl": "/asset/exhibits/1001/image/square.jpg"
+        },
+        {
+            "id": "1002",
+            "number": 3,
+            "title": "Wieczerza z Emaus",
+            "audioLength": 300,
+            "thumbnailUrl": "/asset/exhibits/1002/img/image.png"
+        }
+    ]
+}
