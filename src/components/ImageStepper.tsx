@@ -1,56 +1,95 @@
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import React from "react";
-import Carousel from "react-material-ui-carousel";
-import { Box } from "@mui/material";
+import {useTheme} from "@mui/material/styles";
+import React, {useMemo} from "react";
+import {Box, MobileStepper, Skeleton} from "@mui/material";
+import SwipeableViews from "react-swipeable-views";
+import {ImagePreview} from "./ImagePreview";
+import {useDialog} from "./hooks";
 
 interface ImageStepperProps {
-    imageUrls: string[];
+    images?: string[];
+    loading: boolean
 }
 
-const ImageStepper = (props: ImageStepperProps) => {
-    return (
-        <Swiper spaceBetween={50} slidesPerView={1} modules={[Pagination]} pagination={true} color="transparent">
-            {props.imageUrls.map((item, i) => (
-                <SwiperSlide key={i}>
-                    <img
-                        src={item}
-                        style={{
-                            borderRadius: "24px",
-                            width: "100%",
-                            // maxWidth: '310px',
-                            height: "auto",
-                            objectFit: "cover",
-                        }}
-                    />
-                </SwiperSlide>
-            ))}
-        </Swiper>
-    );
-};
+export const ImageStepper = ({images, loading}: ImageStepperProps) => {
+    const theme = useTheme();
+    const [activeStep, setActiveStep] = React.useState(0);
+    const imgPrevDialog = useDialog()
 
-export default ImageStepper;
+    if (!images) images = [];
+    const maxSteps = images.length;
 
-export const ImageGallery = (props: ImageStepperProps) => {
+    // TODO fix with development setup
+    const imageUrls = useMemo(() => images?.map(image => `https://duz68kh4juaad.cloudfront.net/${image}`), [images])
+
+    const handleStepChange = (step: number) => {
+        setActiveStep(step);
+    };
+
     return (
-        <Carousel height={300}>
-            {props.imageUrls.map((item, i) => (
-                <Box width="100%" height="300px">
-                    <img
-                        src={item}
-                        style={{
+        <Box sx={{
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+        }}>
+            <ImagePreview show={imgPrevDialog.isOpen} close={imgPrevDialog.closeDialog} img={imageUrls?.[activeStep]}/>
+
+            {loading
+                ? <Skeleton variant="rectangular" width={"100%"} height={300}/>
+                : <Box sx={{
+                    maxWidth: '100%',
+                    display: "block"
+                }}>
+                    <SwipeableViews
+                        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+                        index={activeStep}
+                        onChangeIndex={handleStepChange}
+                        enableMouseEvents
+                    >
+                        {imageUrls?.map((image, index) => (
+                                <div key={image}>
+                                    {Math.abs(activeStep - index) <= 2 ? (
+                                        <Box
+                                            component="img"
+                                            sx={{
+                                                aspectRatio: '9 / 7',
+                                                display: 'block',
+                                                overflow: 'hidden',
+                                                width: '100%',
+                                                objectFit: 'cover',
+                                            }}
+                                            src={image}
+                                            onClick={imgPrevDialog.openDialog}
+                                        />
+                                    ) : null}
+                                </div>
+                            )
+                        )
+                        }
+                    </SwipeableViews>
+                    <MobileStepper
+                        variant="dots"
+                        steps={maxSteps}
+                        color={theme.palette.common.white}
+                        position="static"
+                        activeStep={activeStep}
+                        nextButton={null}
+                        backButton={null}
+                        sx={{
                             width: "100%",
-                            height: "auto",
-                            objectFit: "cover",
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            position: "absolute",
+                            backgroundColor: "transparent",
+                            bottom: 18,
+                            color: theme.palette.common.white,
                         }}
                     />
                 </Box>
-            ))}
-        </Carousel>
-    );
-};
+            }
+        </Box>
+    )
+        ;
+}

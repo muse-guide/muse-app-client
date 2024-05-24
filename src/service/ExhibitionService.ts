@@ -3,7 +3,11 @@ import {Exhibition} from "../model/Exhibition";
 
 async function getExhibition(lang: string, id: string): Promise<Exhibition> {
     try {
-        const response = await api.get<Exhibition>(`exhibitions/${id}/${lang}`);
+        const response = await api.get<Exhibition>(`exhibitions/${id}`, {
+            params: {
+                lang: lang
+            }
+        });
         return response.data;
     } catch (err) {
         console.error(`Failed to retrieve exhibit with error: ${err}`);

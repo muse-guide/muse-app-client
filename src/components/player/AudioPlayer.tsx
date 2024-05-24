@@ -10,7 +10,7 @@ import Replay10Icon from "@mui/icons-material/Replay10";
 import { useNavigate } from "react-router-dom";
 
 interface AudioPlayerProps {
-    audioSrc: string;
+    audioSrc?: string;
     nextExhibitId?: string;
     prevExhibitId?: string;
 }
@@ -24,12 +24,12 @@ const Player = (props: AudioPlayerProps) => {
     return (
         <AudioPlayer
             src={props.audioSrc}
-            showSkipControls={true}
+            showSkipControls={false}
             showJumpControls={true}
             layout="stacked"
             progressUpdateInterval={200}
             customIcons={{
-                play: <PlayCircleIcon fontSize="inherit" color="secondary" sx={{ height: "84px" }} />,
+                play: <PlayCircleIcon color="secondary" sx={{ height: "84px", fontSize: "64px" }} />,
                 pause: <PauseCircleIcon fontSize="inherit" color={"secondary"} />,
                 previous: <SkipPreviousIcon fontSize="inherit" color={props.prevExhibitId ? "primary" : "disabled"} />,
                 next: <SkipNextIcon fontSize="inherit" color={props.nextExhibitId ? "primary" : "disabled"} />,

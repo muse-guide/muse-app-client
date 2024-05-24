@@ -1,10 +1,11 @@
-import parse, { DOMNode, Element, HTMLReactParserOptions } from "html-react-parser";
-import { Avatar, Stack, Typography } from "@mui/material";
+import parse, {DOMNode, Element, HTMLReactParserOptions} from "html-react-parser";
+import {Avatar, Stack, Typography} from "@mui/material";
 import React from "react";
 
-const AVAILABLE_TAGS = ["p", "i", "b", "img", "br"];
+const AVAILABLE_TAGS = ["p", "i", "b", "img", "br", "ol", "li", "strong"];
 
-export const TextRenderer = ({ description }: { description: string }) => {
+export const TextRenderer = ({description}: { description?: string }) => {
+    if (!description) return null;
     const options: HTMLReactParserOptions = {
         replace: replace,
     };
@@ -16,7 +17,7 @@ export const TextRenderer = ({ description }: { description: string }) => {
     );
 };
 
-export const TitleRenderer = ({ number, title }: { number: number; title: string }) => {
+export const TitleRenderer = ({number, title}: { number: number; title: string }) => {
     return (
         <Stack direction="row" alignItems={"center"} spacing={1}>
             <Avatar
@@ -40,13 +41,14 @@ export const TitleRenderer = ({ number, title }: { number: number; title: string
     );
 };
 
-export const SubtitleRenderer = ({ subtitle }: { subtitle: string }) => {
+export const SubtitleRenderer = ({subtitle}: { subtitle?: string }) => {
+    if (!subtitle) return null;
     const options: HTMLReactParserOptions = {
         replace: replace,
     };
 
     return (
-        <Typography sx={{ lineHeight: "1.5" }} variant="subtitle1" component={"span"}>
+        <Typography sx={{lineHeight: "1.5"}} variant="subtitle1" component={"span"}>
             <div>{parse(subtitle, options)}</div>
         </Typography>
     );

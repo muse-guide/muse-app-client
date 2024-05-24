@@ -11,7 +11,7 @@ const Image = styled("img")({
 interface ImagePreviewProps {
     show: boolean;
     close: () => void;
-    img: string;
+    img?: string;
 }
 
 export const ImagePreview = (props: ImagePreviewProps) => (
@@ -23,10 +23,11 @@ export const ImagePreview = (props: ImagePreviewProps) => (
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
         }}
     >
         <Fade in={props.show}>
-            <Image src={props.img} alt="asd" />
+            <Image src={props.img} alt="asd" onClick={props.close}/>
         </Fade>
     </Modal>
 );

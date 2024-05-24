@@ -1,23 +1,17 @@
 export interface Exhibit {
     id: string;
-    number: number;
     exhibitionId: string;
+    number: number;
     lang: string;
     langOptions: string[];
     title: string;
     subtitle: string;
-    description: string;
-    audioUrl: string;
-    imageUrl: string;
+    description?: string;
+    imageUrls: string[];
+    audio?: string;
+
+    // TODO: not included in responsem shell it be there?
     nextExhibitId?: string;
     prevExhibitId?: string;
     artistId?: string;
-}
-
-export interface ExhibitSnapshot {
-    id: string;
-    number: number;
-    title: string;
-    audioLength: number;
-    thumbnailUrl: string;
 }

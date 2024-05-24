@@ -1,38 +1,33 @@
-import { Box, Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
+import {Box, Dialog, DialogContent, DialogTitle, IconButton} from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
-import React, { useState } from "react";
-import { CircleFlag } from "react-circle-flags";
+import React from "react";
+import {CircleFlag} from "react-circle-flags";
 import CloseIcon from "@mui/icons-material/Close";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
+import {useDialog} from "./hooks";
+import {LangIcon} from "./LangIcon";
 
 interface LanguageSelectorProps {
     languages: string[];
 }
 
 export default function LanguageSelector(props: LanguageSelectorProps) {
-    const { t, i18n } = useTranslation();
-    const [open, setOpen] = useState(false);
+    const {t, i18n} = useTranslation();
+    const landDialog = useDialog()
 
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
     const langSelectHandler = (lang: string) => {
-        handleClose();
+        landDialog.closeDialog();
         i18n.changeLanguage(lang);
     };
 
     return (
         <React.Fragment>
-            <Box sx={{ display: "flex", flexGrow: 0 }}>
-                <IconButton sx={{ padding: 0 }} onClick={handleClickOpen}>
-                    <CircleFlag countryCode={i18n.language} height="24" />
+            <Box sx={{display: "flex", flexGrow: 0}}>
+                <IconButton sx={{padding: 0}} onClick={landDialog.openDialog}>
+                    <LangIcon lang={i18n.language}/>
                 </IconButton>
             </Box>
-            <Dialog fullScreen open={open} onClose={handleClose}>
+            <Dialog fullScreen open={landDialog.isOpen} onClose={landDialog.closeDialog}>
                 <DialogTitle
                     sx={{
                         paddingX: 2,
@@ -43,8 +38,8 @@ export default function LanguageSelector(props: LanguageSelectorProps) {
                         alignItems: "center",
                     }}
                 >
-                    <IconButton aria-label="close" onClick={handleClose} sx={{ padding: 0 }}>
-                        <CloseIcon color="primary" fontSize="inherit" />
+                    <IconButton aria-label="close" onClick={landDialog.closeDialog} sx={{padding: 0}}>
+                        <CloseIcon color="primary" fontSize="inherit"/>
                     </IconButton>
                 </DialogTitle>
                 <DialogContent>
@@ -54,8 +49,8 @@ export default function LanguageSelector(props: LanguageSelectorProps) {
                         </Grid2>
                         {props.languages.map((lang, index) => (
                             <Grid2 key={`lang${index}`} xs={12} p={4} justifyContent={"center"} display={"flex"}>
-                                <IconButton sx={{ padding: 0 }} onClick={() => langSelectHandler(lang)}>
-                                    <CircleFlag countryCode={lang} height="96" />
+                                <IconButton sx={{padding: 0}} onClick={() => langSelectHandler(lang)}>
+                                    <LangIcon lang={lang} height="96"/>
                                 </IconButton>
                             </Grid2>
                         ))}

@@ -7,15 +7,14 @@ import { Configuration } from "../configuration";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { normalizeText } from "./ComponentUtils";
 
-interface ContentnMainBarProps {
+interface ContentMainBarProps {
     loading: boolean;
     parentPageUrl?: string;
     title?: string;
     langOptions?: string[];
 }
 
-export default function ContentMainBar(props: ContentnMainBarProps) {
-    const { t } = useTranslation();
+export default function ContentMainBar(props: ContentMainBarProps) {
     const trigger = useScrollTrigger();
     const navigate = useNavigate();
 
@@ -29,7 +28,7 @@ export default function ContentMainBar(props: ContentnMainBarProps) {
     return (
         <React.Fragment>
             <Slide appear={false} direction="down" in={!trigger}>
-                <AppBar elevation={0} color="inherit">
+                <AppBar elevation={0} color="transparent" sx={{background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)'}}>
                     {!props.loading && (
                         <Toolbar sx={{ paddingX: 3 }}>
                             {!hideBackArrow && (
@@ -44,11 +43,11 @@ export default function ContentMainBar(props: ContentnMainBarProps) {
                                     flexGrow: 1,
                                     justifyContent: "center",
                                     paddingLeft: hideBackArrow ? 3 : 0,
-                                    paddingRight: hideLangSelector ? 3 : 0,
+                                    paddingRight: hideLangSelector ? 4 : 0,
                                 }}
                             >
                                 <Typography variant="subtitle2" fontWeight="bold">
-                                    {props.title ? normalizeText(props.title, 28) : Configuration.APPLICATION_NAME}
+                                    {props.title ? normalizeText(props.title, 28) : null}
                                 </Typography>
                             </Box>
 
@@ -57,7 +56,6 @@ export default function ContentMainBar(props: ContentnMainBarProps) {
                     )}
                 </AppBar>
             </Slide>
-            <Toolbar />
         </React.Fragment>
     );
 }

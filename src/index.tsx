@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import { createTheme, ThemeProvider } from "@mui/material";
-import ExhibitPage from "./routes/ExhibitPage";
+import ExhibitPage2 from "./routes/ExhibitPage2";
 import ErrorPage from "./routes/ErrorPage";
 import "./translation";
 import MainPage from "./routes/MainPage";
@@ -18,15 +18,15 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "exh/:exhibitId",
-                element: <ExhibitPage />
+                path: "exhibits/:exhibitId",
+                element: <ExhibitPage2 />
             },
             {
                 path: "/",
                 element: <MainPage />
             },
             {
-                path: "col/:exhibitionId",
+                path: "exhibitions/:exhibitionId",
                 element: <ExhibitionPage />
             }
         ]
@@ -46,7 +46,24 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: ["Public Sans", "sans-serif", "Lato", "sans-serif", "Roboto", "sans-serif"].join(",")
+        fontFamily: ["Poppins", "sans-serif", "Roboto", "sans-serif"].join(",")
+    },
+    shape: {
+        borderRadius: 28
+    },
+    components: {
+        MuiMobileStepper: {
+            styleOverrides: {
+                root: ({theme}) => ({
+                    "& .MuiMobileStepper-dot": {
+                        backgroundColor: "rgba(255,255,255,0.5)",
+                    },
+                    "& .MuiMobileStepper-dotActive": {
+                        backgroundColor: "rgba(255,255,255,0.8)",
+                    },
+                }),
+            }
+        },
     }
 });
 

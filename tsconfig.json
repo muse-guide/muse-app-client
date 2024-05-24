@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "ES2021",
-    "lib": ["dom", "dom.iterable", "ES2021"],
+    "target": "ESNext",
+    "lib": ["dom", "dom.iterable", "ESNext"],
     "outDir": "dist",
     "allowJs": true,
     "skipLibCheck": true,

@@ -8,8 +8,8 @@ import { Configuration } from "../configuration";
 interface DescriptionDialogProps {
     show: boolean;
     close: () => void;
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
 }
 
 export default function DescriptionDialog(props: DescriptionDialogProps) {

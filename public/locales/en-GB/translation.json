@@ -1,13 +1,17 @@
 {
     "museum": "Museum",
     "exhibition": "Exhibition",
+    "exhibit": "Exhibit",
+    "exhibits": "Exhibits",
     "selectLang": "Select language",
-    "learnMore": "Learn more",
+    "learnMore": "Learn more...",
+    "loadMore": "Learn more...",
     "artist": "Artist",
     "collapse": "Collapse...",
     "begin": "Let's start!",
     "tryScan": "Found and scan QR code to open audio guide",
     "oops": "Oops",
     "notFound": "Not found... Try again!",
-    "camera": "Camera"
+    "camera": "Camera",
+    "searchExhibits": "Search exhibits by number..."
 }
