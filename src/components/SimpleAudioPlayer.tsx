@@ -22,6 +22,7 @@ export const SimpleAudioPlayer = ({audioUrl}: {
 
     useEffect(() => {
         setPlaying(false)
+        audio.addEventListener('ended', audioEnded)
 
         return () => {
             audio.removeEventListener('ended', audioEnded)
@@ -42,7 +43,6 @@ export const SimpleAudioPlayer = ({audioUrl}: {
         setDefaultState(true)
     }, []);
 
-    audio.addEventListener('ended', audioEnded)
 
     const resetAudio = () => {
         setPlaying(false)

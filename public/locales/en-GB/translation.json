@@ -13,5 +13,6 @@
     "oops": "Oops",
     "notFound": "Not found... Try again!",
     "camera": "Camera",
-    "searchExhibits": "Search exhibits by number..."
+    "searchExhibits": "Search exhibits by number...",
+    "number": "Number"
 }

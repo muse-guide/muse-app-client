@@ -3,11 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./routes/Root";
 import { createTheme, ThemeProvider } from "@mui/material";
-import ExhibitPage2 from "./routes/ExhibitPage2";
+import ExhibitPage from "./routes/exhibit/ExhibitPage";
 import ErrorPage from "./routes/ErrorPage";
 import "./translation";
 import MainPage from "./routes/MainPage";
-import ExhibitionPage from "./routes/ExhibitionPage";
+import ExhibitionPage from "./routes/exhibition/ExhibitionPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "exhibits/:exhibitId",
-                element: <ExhibitPage2 />
+                element: <ExhibitPage />
             },
             {
                 path: "/",
