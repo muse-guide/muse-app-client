@@ -15,7 +15,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
     const [activeStep, setActiveStep] = React.useState(0);
     const imgPrevDialog = useDialog()
 
-    if (!images) images = [];
+    if (!images || images.length === 0) images = ["no_image.png"];
     const maxSteps = images.length;
 
     // TODO fix with development setup
@@ -38,7 +38,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
             {loading
                 ? <Skeleton variant="rectangular" width={"100%"} height={300}/>
                 : <Box sx={{
-                    maxWidth: '100%',
+                    width: '100%',
                     display: "block"
                 }}>
                     <SwipeableViews

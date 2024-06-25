@@ -10,6 +10,8 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
 
+    const audioAvailable = useMemo(() => !!audioUrl, [audioUrl])
+
     const audio = useMemo(
         () => {
             // TODO fix with development setup
@@ -69,6 +71,7 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
     const forward10Sec = () => handleSeek(audio.currentTime + 10)
 
     function formatDuration(durationSeconds: number) {
+        if (!audioAvailable) return "0:00";
         const minutes = Math.floor(durationSeconds / 60);
         const seconds = Math.floor(durationSeconds % 60);
         const formattedSeconds = seconds.toString().padStart(2, "0");
@@ -85,6 +88,7 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
                         onChange={(_, value) => handleSeek(value as number)}
                         value={currentTime}
                         max={duration}
+                        disabled={!audioAvailable}
                     />
                     <Stack direction={"row"} justifyContent={"space-between"} mt={-2}>
                         <Typography variant="overline" color={"gray"}>{formatDuration(currentTime)}</Typography>
@@ -93,17 +97,17 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
                 </Stack>
                 <Stack mt={-1.5}>
                     <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
-                        <IconButton onClick={rewind10Sec}>
-                            <Replay10Icon sx={{fontSize: 56}} color={"primary"}/>
+                        <IconButton onClick={rewind10Sec} disabled={!audioAvailable}>
+                            <Replay10Icon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
                         </IconButton>
-                        <IconButton onClick={handlePlayPause}>
+                        <IconButton onClick={handlePlayPause} disabled={!audioAvailable}>
                             {isPlaying
-                                ? <PauseCircleIcon sx={{fontSize: 72}} color={"secondary"}/>
-                                : <PlayCircleIcon sx={{fontSize: 72}} color={"secondary"}/>
+                                ? <PauseCircleIcon sx={{fontSize: 72}} color={audioAvailable ? "secondary" : "disabled"}/>
+                                : <PlayCircleIcon sx={{fontSize: 72}} color={audioAvailable ? "secondary" : "disabled"}/>
                             }
                         </IconButton>
-                        <IconButton onClick={forward10Sec}>
-                            <Forward10Icon sx={{fontSize: 56}} color={"primary"}/>
+                        <IconButton onClick={forward10Sec} disabled={!audioAvailable}>
+                            <Forward10Icon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
                         </IconButton>
                     </Stack>
                 </Stack>

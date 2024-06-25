@@ -32,6 +32,7 @@ const ExhibitionPage = () => {
             }
             setExhibition(exhibition);
         } catch (err) {
+            console.error(`Failed to retrieve exhibit with error: ${err}`);
             navigate("/error");
         } finally {
             setExhibitionLoading(false);
@@ -71,7 +72,7 @@ function ExhibitionMainBar(props: ExhibitionMainBarProps) {
     return (
         <React.Fragment>
             <Slide appear={false} direction="down" in={!trigger}>
-                <AppBar elevation={0} color="inherit" sx={{background: 'linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)'}}>
+                <AppBar elevation={0} color="inherit" sx={{background: 'linear-gradient(180deg, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0) 100%)'}}>
                     {!props.loading && (
                         <Toolbar sx={{
                             paddingX: 3,

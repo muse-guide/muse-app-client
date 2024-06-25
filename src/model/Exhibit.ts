@@ -15,3 +15,22 @@ export interface Exhibit {
     prevExhibitId?: string;
     artistId?: string;
 }
+
+export function isExhibit(obj: any): obj is Exhibit {
+    return (
+        obj &&
+        typeof obj.id === 'string' &&
+        typeof obj.exhibitionId === 'string' &&
+        typeof obj.number === 'number' &&
+        typeof obj.lang === 'string' &&
+        Array.isArray(obj.langOptions) &&
+        typeof obj.title === 'string' &&
+        typeof obj.subtitle === 'string' &&
+        (typeof obj.description === 'string' || obj.description === undefined) &&
+        Array.isArray(obj.imageUrls) &&
+        (typeof obj.audio === 'string' || obj.audio === undefined) &&
+        (typeof obj.nextExhibitId === 'string' || obj.nextExhibitId === undefined) &&
+        (typeof obj.prevExhibitId === 'string' || obj.prevExhibitId === undefined) &&
+        (typeof obj.artistId === 'string' || obj.artistId === undefined)
+    );
+}

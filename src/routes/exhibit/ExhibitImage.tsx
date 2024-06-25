@@ -9,6 +9,8 @@ import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
     const imageGallery = useDialog()
     const images = imageUrls ? imageUrls?.map(image => `https://duz68kh4juaad.cloudfront.net/${image}`) : []
+    const imageAvailable = images.length > 0
+    const mainImage = images?.[0] ?? "/no_image.png"
 
     return (
         <>
@@ -20,7 +22,8 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                 onClick={imageGallery.openDialog}
             >
                 <img
-                    src={images?.[0] ?? undefined}
+                    src={mainImage}
+                    fetchPriority={"high"}
                     style={{
                         display: "block",
                         width: '100%',
@@ -28,7 +31,7 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                         aspectRatio: '1 / 1',
                         objectFit: 'cover',
                         borderRadius: 16,
-                        boxShadow: '0px 9px 35px -12px rgba(66, 68, 90, 1)'
+                        boxShadow: '0px 9px 35px -12px rgba(66, 68, 90, 0.75)'
                     }}
                 />
                 <Stack
@@ -46,9 +49,8 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                         width={'100%'}
                         height={56}
                         maxWidth={280}
-                        bgcolor={"red"}
                         sx={{
-                            background: 'linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,1.0) 100%)',
+                            background: imageAvailable ? 'linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.75) 100%)' : undefined,
                         }}
                         borderRadius={'0 0 16px 16px'}
                     >

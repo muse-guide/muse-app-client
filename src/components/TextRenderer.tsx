@@ -48,7 +48,7 @@ export const SubtitleRenderer = ({subtitle}: { subtitle?: string }) => {
     };
 
     return (
-        <Typography sx={{lineHeight: "1.5"}} variant="subtitle1" component={"span"}>
+        <Typography sx={{lineHeight: "1.5"}} variant="subtitle1">
             <div>{parse(subtitle, options)}</div>
         </Typography>
     );

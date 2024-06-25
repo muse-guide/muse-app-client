@@ -1,18 +1,16 @@
 import api from "../http/client";
-import {Exhibition} from "../model/Exhibition";
+import {Exhibition, isExhibition} from "../model/Exhibition";
 
 async function getExhibition(lang: string, id: string): Promise<Exhibition> {
-    try {
-        const response = await api.get<Exhibition>(`exhibitions/${id}`, {
-            params: {
-                lang: lang
-            }
-        });
-        return response.data;
-    } catch (err) {
-        console.error(`Failed to retrieve exhibit with error: ${err}`);
-        throw err;
+    const response = await api.get<Exhibition>(`exhibitions/${id}`, {
+        params: {
+            lang: lang
+        }
+    });
+    if (!response.data || !isExhibition(response.data)) {
+        throw new Error(`Failed to retrieve exhibition with error`);
     }
+    return response.data;
 }
 
 export const exhibitionService = {

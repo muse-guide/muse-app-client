@@ -37,6 +37,7 @@ const ExhibitPage = () => {
             }
             setExhibit(exhibit);
         } catch (err) {
+            console.error(`Failed to retrieve exhibit with error: ${err}`);
             navigate("/error");
         } finally {
             setLoading(false);
@@ -93,7 +94,7 @@ const ExhibitPage = () => {
                     }
                     {loading
                         ? <Skeleton variant={"rectangular"} height={48} width={300}/>
-                        : <Stack display={"flex"} alignItems={"center"}>
+                        : <Stack display={"flex"} alignItems={"start"}>
                             <SubtitleRenderer subtitle={exhibit?.subtitle}/>
                         </Stack>
                     }
@@ -142,29 +143,31 @@ function ExhibitMainBar(props: ExhibitMainBarProps) {
         <React.Fragment>
             <Slide appear={false} direction="down" in={!trigger}>
                 <AppBar elevation={0} color="inherit">
-                    {!props.loading && (
-                        <Toolbar sx={{paddingX: 3}}>
+                    <Toolbar sx={{paddingX: 3}}>
+                        {!props.loading &&
                             <IconButton sx={{padding: 0}} onClick={() => navigateTo(props.parentPageUrl)}>
                                 <KeyboardArrowDownIcon sx={{display: "flex"}} color={"primary"}/>
                             </IconButton>
+                        }
 
-                            <Box
-                                sx={{
-                                    display: "flex",
-                                    flexGrow: 1,
-                                    justifyContent: "center",
-                                    paddingLeft: 0,
-                                    paddingRight: 0,
-                                }}
-                            >
-                                <Typography variant="overline">
-                                    Now playing
-                                </Typography>
-                            </Box>
+                        <Box
+                            sx={{
+                                display: "flex",
+                                flexGrow: 1,
+                                justifyContent: "center",
+                                paddingLeft: 0,
+                                paddingRight: 0,
+                            }}
+                        >
+                            <Typography variant="overline">
+                                Now playing
+                            </Typography>
+                        </Box>
 
+                        {!props.loading &&
                             <LanguageSelector languages={props.langOptions ?? []}/>
-                        </Toolbar>
-                    )}
+                        }
+                    </Toolbar>
                 </AppBar>
             </Slide>
         </React.Fragment>

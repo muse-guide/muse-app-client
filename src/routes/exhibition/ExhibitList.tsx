@@ -23,11 +23,11 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
         getExhibitsAsync(i18n.language, exhibitionId, nextPageKey);
     }, [i18n.language, exhibitionId]);
 
-    const getExhibitsAsync = async (lang: string, exhibitionId?: string, nextPageKey?: string, searchTerm?: number) => {
+    const getExhibitsAsync = async (lang: string, exhibitionId?: string, nextPageKey?: string, number?: number) => {
         if (!exhibitionId) return;
         setLoading(true);
         try {
-            const results = await exhibitService.getExhibitsFor(exhibitionId, lang, nextPageKey, searchTerm);
+            const results = await exhibitService.getExhibitsFor(exhibitionId, lang, nextPageKey, number);
             if (nextPageKey) {
                 setExhibits(prevState => prevState.concat(results.items as Exhibit[]));
             } else {
@@ -35,6 +35,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
             }
             setNextPageKey(results.nextPageKey)
         } catch (err) {
+            console.error(`Failed to retrieve exhibits with error: ${err}`);
             navigate("/error");
         } finally {
             setLoading(false);
@@ -90,9 +91,13 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
                     ))}
                 </Stack>
                 : <Stack pt={1.5} pb={1} width={"100%"} gap={1}>
-                    {exhibits.map((exhibit, index) => (
-                        <ExhibitListItem key={exhibit.id} exhibit={exhibit}/>
-                    ))}
+                    {exhibits.length === 0
+                        ? <Box width={"100%"} display={"flex"} justifyContent={"center"}>
+                            <Typography variant={"subtitle2"}>No items found</Typography>
+                        </Box>
+                        : exhibits.map((exhibit, index) => (
+                            <ExhibitListItem key={exhibit.id} exhibit={exhibit}/>
+                        ))}
                 </Stack>}
             {onLoadMore &&
                 <LoadingButton
