@@ -18,9 +18,6 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
     if (!images || images.length === 0) images = ["no_image.png"];
     const maxSteps = images.length;
 
-    // TODO fix with development setup
-    const imageUrls = useMemo(() => images?.map(image => `https://duz68kh4juaad.cloudfront.net/${image}`), [images])
-
     const handleStepChange = (step: number) => {
         setActiveStep(step);
     };
@@ -33,7 +30,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
             justifyContent: "center",
             position: "relative",
         }}>
-            <ImagePreview show={imgPrevDialog.isOpen} close={imgPrevDialog.closeDialog} img={imageUrls?.[activeStep]}/>
+            <ImagePreview show={imgPrevDialog.isOpen} close={imgPrevDialog.closeDialog} img={images?.[activeStep]}/>
 
             {loading
                 ? <Skeleton variant="rectangular" width={"100%"} height={300}/>
@@ -47,7 +44,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
                         onChangeIndex={handleStepChange}
                         enableMouseEvents
                     >
-                        {imageUrls?.map((image, index) => (
+                        {images?.map((image, index) => (
                                 <div key={image}>
                                     {Math.abs(activeStep - index) <= 2 ? (
                                         <Box

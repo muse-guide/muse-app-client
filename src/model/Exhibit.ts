@@ -6,7 +6,7 @@ export interface Exhibit {
     langOptions: string[];
     title: string;
     subtitle: string;
-    description?: string;
+    article?: string;
     imageUrls: string[];
     audio?: string;
 
@@ -26,7 +26,7 @@ export function isExhibit(obj: any): obj is Exhibit {
         Array.isArray(obj.langOptions) &&
         typeof obj.title === 'string' &&
         typeof obj.subtitle === 'string' &&
-        (typeof obj.description === 'string' || obj.description === undefined) &&
+        (typeof obj.article === 'string' || obj.article === undefined) &&
         Array.isArray(obj.imageUrls) &&
         (typeof obj.audio === 'string' || obj.audio === undefined) &&
         (typeof obj.nextExhibitId === 'string' || obj.nextExhibitId === undefined) &&

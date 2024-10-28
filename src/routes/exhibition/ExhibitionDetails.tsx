@@ -4,7 +4,7 @@ import {useTranslation} from "react-i18next";
 import {useDialog} from "../../components/hooks";
 import React, {useMemo} from "react";
 import {Box, Link, Skeleton, Stack, Typography} from "@mui/material";
-import DescriptionDialog from "../../components/DescriptionDialog";
+import ArticleDialog from "../../components/article/ArticleDialog";
 import {SimpleAudioPlayer} from "../../components/SimpleAudioPlayer";
 
 export const ExhibitionDetails = ({exhibition, loading}: { exhibition?: Exhibition, loading: boolean }) => {
@@ -12,7 +12,7 @@ export const ExhibitionDetails = ({exhibition, loading}: { exhibition?: Exhibiti
     const {t, i18n} = useTranslation();
     const descDialog = useDialog()
 
-    const descAvailable: boolean = useMemo(() => !!(exhibition && exhibition?.description), [exhibition])
+    const descAvailable: boolean = useMemo(() => !!(exhibition && exhibition?.article), [exhibition])
 
     return (
         <Stack
@@ -33,7 +33,7 @@ export const ExhibitionDetails = ({exhibition, loading}: { exhibition?: Exhibiti
                 position: "relative"
             }}
         >
-            {descAvailable && <DescriptionDialog show={descDialog.isOpen} close={descDialog.closeDialog} title={exhibition?.title} description={exhibition?.description!}/>}
+            {descAvailable && <ArticleDialog show={descDialog.isOpen} close={descDialog.closeDialog} title={exhibition?.title} article={exhibition?.article!}/>}
             {!loading && <Box position={"absolute"} top={-28} right={24}>
                 <SimpleAudioPlayer audioUrl={exhibition?.audio}/>
             </Box>}

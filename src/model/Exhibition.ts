@@ -5,7 +5,7 @@ export interface Exhibition {
     langOptions: string[];
     title: string;
     subtitle: string;
-    description?: string;
+    article?: string;
     imageUrls: string[];
     audio?: string;
 }
@@ -19,7 +19,7 @@ export function isExhibition(obj: any): obj is Exhibition {
         Array.isArray(obj.langOptions) &&
         typeof obj.title === 'string' &&
         typeof obj.subtitle === 'string' &&
-        (typeof obj.description === 'string' || obj.description === undefined) &&
+        (typeof obj.article === 'string' || obj.article === undefined) &&
         Array.isArray(obj.imageUrls) &&
         (typeof obj.audio === 'string' || obj.audio === undefined)
     );

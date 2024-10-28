@@ -3,8 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useMemo, useState} from "react";
 import {exhibitService} from "../../service/ExhibitService";
 import {useTranslation} from "react-i18next";
-import {SubtitleRenderer} from "../../components/TextRenderer";
-import DescriptionDialog from "../../components/DescriptionDialog";
+import ArticleDialog from "../../components/article/ArticleDialog";
 import {Exhibit} from "../../model/Exhibit";
 import {useDialog} from "../../components/hooks";
 import LanguageSelector from "../../components/LanguageSelector";
@@ -47,14 +46,14 @@ const ExhibitPage = () => {
     const parentPage = useMemo(() => exhibit ? `/exhibitions/${exhibit?.exhibitionId}` : undefined, [exhibit])
     const title = useMemo(() => exhibit ? `${exhibit.number}. ${exhibit.title}` : undefined, [exhibit])
     const langOptions = useMemo(() => exhibit ? exhibit?.langOptions : undefined, [exhibit])
-    const descAvailable: boolean = useMemo(() => !!(exhibit && exhibit?.description), [exhibit])
+    const descAvailable: boolean = useMemo(() => !!(exhibit && exhibit?.article), [exhibit])
 
     return (
         <Slide direction="up" in={true} timeout={300}>
             <Stack height="100svh" alignItems={"start"} px={3} pb={3}>
                 <ExhibitMainBar loading={loading} parentPageUrl={parentPage} title={title} langOptions={langOptions}/>
                 <Toolbar/>
-                {exhibit?.description && <DescriptionDialog show={descDialog.isOpen} close={descDialog.closeDialog} title={exhibit?.title} description={exhibit.description}/>}
+                {exhibit?.article && <ArticleDialog show={descDialog.isOpen} close={descDialog.closeDialog} title={exhibit?.title} article={exhibit.article}/>}
 
                 <Box
                     display={"flex"}
@@ -94,15 +93,13 @@ const ExhibitPage = () => {
                     }
                     {loading
                         ? <Skeleton variant={"rectangular"} height={48} width={300}/>
-                        : <Stack display={"flex"} alignItems={"start"}>
-                            <SubtitleRenderer subtitle={exhibit?.subtitle}/>
-                        </Stack>
+                        : <Typography variant="body1">{exhibit?.subtitle}</Typography>
                     }
                     {exhibit?.artistId &&
                         <Stack direction={"row"} gap={1} pt={1}>
                             <Avatar
                                 sx={{width: 20, height: 20}}
-                                src={`https://duz68kh4juaad.cloudfront.net/${exhibit?.imageUrls[0]}`}
+                                src={exhibit?.imageUrls[0]}
                             />
                             <Typography variant="subtitle2">
                                 Tadeusz Kościuszko

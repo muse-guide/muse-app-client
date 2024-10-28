@@ -13,9 +13,7 @@ export const SimpleAudioPlayer = ({audioUrl}: {
 
     const audio = useMemo(
         () => {
-            // TODO fix with development setup
-            const url = audioUrl ? `https://duz68kh4juaad.cloudfront.net/${audioUrl}` : undefined
-            return new Audio(url)
+            return new Audio(audioUrl)
         },
         [audioUrl]
     )

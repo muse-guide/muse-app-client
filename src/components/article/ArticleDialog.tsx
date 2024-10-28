@@ -2,17 +2,17 @@ import { Box, Dialog, DialogContent, IconButton, Stack, Typography } from "@mui/
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { TextRenderer } from "./TextRenderer";
-import { normalizeText } from "./ComponentUtils";
-import { Configuration } from "../configuration";
+import { normalizeText } from "../ComponentUtils";
+import { Configuration } from "../../configuration";
 
 interface DescriptionDialogProps {
     show: boolean;
     close: () => void;
     title?: string;
-    description?: string;
+    article?: string;
 }
 
-export default function DescriptionDialog(props: DescriptionDialogProps) {
+export default function ArticleDialog(props: DescriptionDialogProps) {
     return (
         <Dialog fullScreen open={props.show} onClose={() => props.close()}>
             <DialogContent sx={{ paddingX: 3, paddingTop: 1 }}>
@@ -45,7 +45,7 @@ export default function DescriptionDialog(props: DescriptionDialogProps) {
                         <CloseIcon color="primary" fontSize="inherit" />
                     </IconButton>
                 </Stack>
-                <TextRenderer description={props.description} />
+                <TextRenderer article={props.article} />
             </DialogContent>
         </Dialog>
     );

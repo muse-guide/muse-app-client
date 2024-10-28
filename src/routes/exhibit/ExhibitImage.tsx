@@ -8,13 +8,12 @@ import CollectionsOutlinedIcon from "@mui/icons-material/CollectionsOutlined";
 
 export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
     const imageGallery = useDialog()
-    const images = imageUrls ? imageUrls?.map(image => `https://duz68kh4juaad.cloudfront.net/${image}`) : []
-    const imageAvailable = images.length > 0
-    const mainImage = images?.[0] ?? "/no_image.png"
+    const imageAvailable = imageUrls && imageUrls?.length > 0
+    const mainImage = imageUrls?.[0] ?? "/no_image.png"
 
     return (
         <>
-            <ExhibitImageGallery show={imageGallery.isOpen} close={imageGallery.closeDialog} images={images}/>
+            <ExhibitImageGallery show={imageGallery.isOpen} close={imageGallery.closeDialog} images={imageUrls ?? []}/>
             <Stack
                 width={'100%'}
                 display={"flex"}
@@ -23,7 +22,6 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
             >
                 <img
                     src={mainImage}
-                    fetchPriority={"high"}
                     style={{
                         display: "block",
                         width: '100%',
@@ -33,6 +31,7 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                         borderRadius: 16,
                         boxShadow: '0px 9px 35px -12px rgba(66, 68, 90, 0.75)'
                     }}
+                    alt={""}
                 />
                 <Stack
                     position={"relative"}
@@ -54,9 +53,9 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                         }}
                         borderRadius={'0 0 16px 16px'}
                     >
-                        {images.length > 0 &&
+                        {imageAvailable &&
                             <Stack direction={"row"} justifyContent={"center"} alignItems={"center"} pr={1.0}>
-                                <Typography variant={"subtitle2"} color={"white"}>{`1/${images.length}`}</Typography>
+                                <Typography variant={"subtitle2"} color={"white"}>{`1/${imageUrls?.length}`}</Typography>
                                 <IconButton>
                                     <CollectionsOutlinedIcon sx={{color: 'white'}}/>
                                 </IconButton>

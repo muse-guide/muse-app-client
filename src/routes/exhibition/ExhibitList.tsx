@@ -96,7 +96,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
                             <Typography variant={"subtitle2"}>No items found</Typography>
                         </Box>
                         : exhibits.map((exhibit, index) => (
-                            <ExhibitListItem key={exhibit.id} exhibit={exhibit}/>
+                            <ExhibitListItem key={exhibit.id + index} exhibit={exhibit}/>
                         ))}
                 </Stack>}
             {onLoadMore &&
@@ -125,7 +125,7 @@ const ExhibitListItem = ({exhibit}: { exhibit: Exhibit }) => {
         navigate(`/exhibits/${exhibitId}`);
     };
 
-    const imageUrl = useMemo(() => exhibit && exhibit?.imageUrls.length > 0 ? `https://duz68kh4juaad.cloudfront.net/${exhibit.imageUrls[0]}` : undefined, [exhibit])
+    const imageUrl = useMemo(() => exhibit.imageUrls && exhibit?.imageUrls.length > 0 ? exhibit.imageUrls[0] : undefined, [exhibit])
 
     return (
         <>

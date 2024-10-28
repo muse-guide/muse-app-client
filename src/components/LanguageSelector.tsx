@@ -1,5 +1,4 @@
-import {Box, Dialog, DialogContent, DialogTitle, IconButton} from "@mui/material";
-import Grid2 from "@mui/material/Unstable_Grid2";
+import {Box, Dialog, DialogContent, DialogTitle, Grid2, IconButton} from "@mui/material";
 import React from "react";
 import {CircleFlag} from "react-circle-flags";
 import CloseIcon from "@mui/icons-material/Close";
@@ -44,11 +43,11 @@ export default function LanguageSelector(props: LanguageSelectorProps) {
                 </DialogTitle>
                 <DialogContent>
                     <Grid2 container spacing={0} px={2} pt={8}>
-                        <Grid2 xs={12} pb={2} justifyContent={"center"} display={"flex"}>
+                        <Grid2 size={12} pb={2} justifyContent={"center"} display={"flex"}>
                             {t("selectLang")}
                         </Grid2>
                         {props.languages.map((lang, index) => (
-                            <Grid2 key={`lang${index}`} xs={12} p={4} justifyContent={"center"} display={"flex"}>
+                            <Grid2 key={`lang${index}`} size={12} p={4} justifyContent={"center"} display={"flex"}>
                                 <IconButton sx={{padding: 0}} onClick={() => langSelectHandler(lang)}>
                                     <LangIcon lang={lang} height="96"/>
                                 </IconButton>
