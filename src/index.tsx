@@ -46,7 +46,7 @@ const theme = createTheme({
         }
     },
     typography: {
-        fontFamily: ["Poppins", "sans-serif", "Roboto", "sans-serif"].join(",")
+        fontFamily: ["Inter", "sans-serif"].join(",")
     },
     shape: {
         borderRadius: 28
