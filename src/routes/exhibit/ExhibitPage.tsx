@@ -95,17 +95,6 @@ const ExhibitPage = () => {
                         ? <Skeleton variant={"rectangular"} height={48} width={300}/>
                         : <Typography variant="body1">{exhibit?.subtitle}</Typography>
                     }
-                    {exhibit?.artistId &&
-                        <Stack direction={"row"} gap={1} pt={1}>
-                            <Avatar
-                                sx={{width: 20, height: 20}}
-                                src={exhibit?.imageUrls[0]}
-                            />
-                            <Typography variant="subtitle2">
-                                Tadeusz Kościuszko
-                            </Typography>
-                        </Stack>
-                    }
                 </Stack>
 
                 <Stack width={"100%"} pt={1.5}>

@@ -7,15 +7,15 @@ import "./articleStyles.css";
 export const TextRenderer = ({article}: { article?: string }) => {
     if (!article) return null;
 
-    DOMPurify.addHook('uponSanitizeElement', (node, data) => {
-        if (data.tagName === 'iframe') {
-            const src = node.getAttribute('src') || ''
-            if (!src.startsWith("https://www.youtube-nocookie.com/embed/")) {
-                console.log(src, "jkkjjk")
-                return node.parentNode?.removeChild(node)
-            }
-        }
-    })
+    // DOMPurify.addHook('uponSanitizeElement', (node, data) => {
+    //     if (data.tagName === 'iframe') {
+    //         const src = node.hasAttribute('') || ''
+    //         if (!src.startsWith("https://www.youtube-nocookie.com/embed/")) {
+    //             console.log(src, "jkkjjk")
+    //             return node.parentNode?.removeChild(node)
+    //         }
+    //     }
+    // })
     const articleSanitized = DOMPurify.sanitize(article, {
         ADD_TAGS: ["iframe"],
         ADD_ATTR: ['allow', 'allowfullscreen', 'frameborder', 'scrolling']

@@ -13,7 +13,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
     const {t, i18n} = useTranslation();
-    const navigate = useNavigate();
     const [showSearch, setShowSearch] = useState<boolean>(false);
     const [exhibits, setExhibits] = useState<Exhibit[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -36,7 +35,6 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
             setNextPageKey(results.nextPageKey)
         } catch (err) {
             console.error(`Failed to retrieve exhibits with error: ${err}`);
-            navigate("/error");
         } finally {
             setLoading(false);
         }

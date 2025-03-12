@@ -10,6 +10,7 @@ import {ExhibitList} from "./ExhibitList";
 import LanguageSelector from "../../components/LanguageSelector";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
+
 const ExhibitionPage = () => {
     const {exhibitionId} = useParams();
     const navigate = useNavigate();
@@ -43,7 +44,7 @@ const ExhibitionPage = () => {
 
     return (
         <Stack>
-            <ExhibitionMainBar loading={exhibitionLoading} langOptions={langOptions}/>
+            <ExhibitionMainBar loading={exhibitionLoading} langOptions={langOptions} institutionId={exhibition?.institutionId}/>
             <Stack>
                 <ImageStepper images={exhibition?.imageUrls} loading={exhibitionLoading}/>
                 <ExhibitionDetails exhibition={exhibition} loading={exhibitionLoading}/>
@@ -80,7 +81,7 @@ function ExhibitionMainBar(props: ExhibitionMainBarProps) {
                         }}>
                             {props.institutionId &&
                                 <IconButton sx={{padding: 0}} onClick={navigateToInstitution}>
-                                    <ChevronLeftIcon sx={{display: "flex", color: 'white'}}/>
+                                    <ChevronLeftIcon fontSize={"large"} sx={{display: "flex", color: 'white'}}/>
                                 </IconButton>
                             }
                             <Box/>

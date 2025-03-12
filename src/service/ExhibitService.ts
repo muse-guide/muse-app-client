@@ -1,5 +1,5 @@
 import api from "../http/client";
-import {Exhibit, isExhibit} from "../model/Exhibit";
+import {Exhibit} from "../model/Exhibit";
 import {PaginatedResults} from "../model/common";
 
 async function getExhibit(lang: string, id: string): Promise<Exhibit> {
@@ -8,8 +8,8 @@ async function getExhibit(lang: string, id: string): Promise<Exhibit> {
             "lang": lang,
         }
     });
-    if (!response.data || !isExhibit(response.data)) {
-        throw new Error(`Failed to retrieve exhibit with error`);
+    if (!response.data) {
+        throw new Error(`Failed to retrieve exhibit`);
     }
     return response.data;
 }

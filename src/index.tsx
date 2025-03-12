@@ -8,6 +8,7 @@ import ErrorPage from "./routes/ErrorPage";
 import "./translation";
 import MainPage from "./routes/MainPage";
 import ExhibitionPage from "./routes/exhibition/ExhibitionPage";
+import InstitutionPage from "./routes/insititution/InstitutionPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -18,17 +19,21 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
             {
-                path: "exhibits/:exhibitId",
-                element: <ExhibitPage />
-            },
-            {
                 path: "/",
                 element: <MainPage />
             },
             {
                 path: "exhibitions/:exhibitionId",
                 element: <ExhibitionPage />
-            }
+            },
+            {
+                path: "institutions/:institutionId",
+                element: <InstitutionPage />
+            },
+            {
+                path: "exhibits/:exhibitId",
+                element: <ExhibitPage />
+            },
         ]
     }
 ]);
@@ -37,13 +42,16 @@ const theme = createTheme({
     palette: {
         mode: "light",
         primary: {
-            main: "#212121"
+            // main: "#212121"
+            main: "#000000",
+            light: "rgb(39,39,39)",
         },
         secondary: {
-            main: "#103a86",
+            main: "#000000",
             light: "#87a5da",
-            dark: "#06245e"
-        }
+            dark: "#000000"
+        },
+        divider: "rgba(0,0,0,0.56)"
     },
     typography: {
         fontFamily: ["Inter", "sans-serif"].join(",")

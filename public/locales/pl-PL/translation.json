@@ -1,11 +1,13 @@
 {
     "museum": "Museum",
     "exhibition": "Wystawa",
+    "exhibitions": "Wystawy",
     "exhibit": "Eksponat",
     "exhibits": "Eksponaty",
     "selectLang": "Wybierz język",
     "learnMore": "Dowiedz się więcej...",
     "loadMore": "Więcej...",
+    "expand": "Rozwiń",
     "artist": "Artysta",
     "collapse": "Zwiń opis...",
     "begin": "Zaczynamy!",

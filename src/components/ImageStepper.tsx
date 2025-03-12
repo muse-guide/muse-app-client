@@ -80,7 +80,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
                             justifyContent: "center",
                             position: "absolute",
                             backgroundColor: "transparent",
-                            bottom: 18,
+                            bottom: 32,
                             color: theme.palette.common.white,
                         }}
                     />
