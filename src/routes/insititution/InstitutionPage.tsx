@@ -1,4 +1,4 @@
-import {AppBar, Slide, Stack, Toolbar, useScrollTrigger} from "@mui/material";
+import {AppBar, Slide, Stack, Toolbar, Typography, useScrollTrigger} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
@@ -44,11 +44,16 @@ const InstitutionPage = () => {
     return (
         <Stack>
             <InstitutionMainBar loading={institutionLoading} langOptions={langOptions}/>
-            <Stack pb={4}>
+            <Stack>
                 <ImageStepper images={institution?.imageUrls} loading={institutionLoading}/>
                 <InstitutionDetails institution={institution} loading={institutionLoading}/>
                 <ArticlePreview article={institution?.article} loading={institutionLoading}/>
                 <ExhibitionList institutionId={institutionId}/>
+                <Stack height={100} width={"100%"} alignItems={"center"} justifyContent={"center"}>
+                    <Typography variant={"caption"} color={"textSecondary"}>
+                        Powered by <b>museo.guide</b>
+                    </Typography>
+                </Stack>
             </Stack>
         </Stack>
     );

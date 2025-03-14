@@ -42,7 +42,7 @@ export const InstitutionDetails = ({institution, loading}: { institution?: Insti
                     ? <Stack width={"100%"} height={24} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={300}/>
                     </Stack>
-                    : <Typography variant="body1">{institution?.subtitle}</Typography>
+                    : institution?.subtitle ?? <Typography variant="body1" color={"textSecondary"}>{institution?.subtitle}</Typography>
                 }
             </Stack>
         </Stack>

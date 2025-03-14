@@ -50,7 +50,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
                                         <Box
                                             component="img"
                                             sx={{
-                                                aspectRatio: '9 / 7',
+                                                aspectRatio: '10 / 7',
                                                 display: 'block',
                                                 overflow: 'hidden',
                                                 width: '100%',

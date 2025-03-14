@@ -23,7 +23,7 @@ export const ArticlePreview = ({article, loading}: { article?: string, loading: 
             <Stack
                 overflow={"hidden"}
                 sx={{
-                    maxHeight: showFull ? "100%" : "160px",
+                    maxHeight: showFull ? "100%" : "100px",
                     transition: "max-height 0.5s ease"
                 }}
             >
@@ -45,7 +45,7 @@ export const ArticlePreview = ({article, loading}: { article?: string, loading: 
                     <Stack
                         width={"100%"}
                         display={"flex"}
-                        height={"60px"}
+                        height={"30px"}
                         color={"red"}
                         bgcolor={"red"}
                         justifyContent={"end"}

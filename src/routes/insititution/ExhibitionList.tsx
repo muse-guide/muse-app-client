@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import React, {useEffect, useMemo, useState} from "react";
 import {Exhibition} from "../../model/Exhibition";
 import {exhibitionService} from "../../service/ExhibitionService";
-import {Avatar, Box, IconButton, Skeleton, Stack, Typography} from "@mui/material";
+import {Box, IconButton, Skeleton, Stack, Typography} from "@mui/material";
 import {LoadingButton} from "@mui/lab";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {useTheme} from "@mui/material/styles";
@@ -12,6 +12,7 @@ import {normalizeText} from "../../components/ComponentUtils";
 
 export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
     const {t, i18n} = useTranslation();
+    const theme = useTheme();
     const [exhibitions, setExhibitions] = useState<Exhibition[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [nextPageKey, setNextPageKey] = useState<string | undefined>(undefined);
@@ -43,17 +44,22 @@ export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
     } : undefined
 
     return (
-        <Stack px={3} gap={2}>
+        <Stack
+            bgcolor={theme.palette.secondary.light}
+            width={"100%"}
+            pt={2}
+            pb={3}
+        > <Stack px={3} gap={3}>
             <Stack position={"relative"}>
                 <Typography variant="h6" fontWeight={'bold'}>{t("exhibitions")}</Typography>
             </Stack>
             {loading
-                ? <Stack pt={0} pb={1} width={"100%"} gap={1}>
+                ? <Stack pt={0} pb={1} width={"100%"} gap={2}>
                     {Array.from({length: 5}).map((_, index) => (
-                        <Skeleton variant={"rounded"} sx={{borderRadius: "8px"}} height={78} key={index}/>
+                        <Skeleton variant={"rectangular"} height={60} key={index}/>
                     ))}
                 </Stack>
-                : <Stack pt={0} pb={1} width={"100%"} gap={1}>
+                : <Stack pt={0} pb={1} width={"100%"} gap={2}>
                     {exhibitions.length === 0
                         ? <Box width={"100%"} display={"flex"} justifyContent={"center"}>
                             <Typography variant={"subtitle2"}>No items found</Typography>
@@ -77,6 +83,7 @@ export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
                 </LoadingButton>
             }
         </Stack>
+        </Stack>
     )
 }
 
@@ -97,15 +104,19 @@ const ExhibitionListItem = ({exhibition}: { exhibition: Exhibition }) => {
                 direction={"row"}
                 display={"flex"}
                 alignItems={"center"}
-                sx={{
-                    cursor: "pointer",
-                    padding: "16px",
-                    borderRadius: "8px",
-                    border: "solid 1px",
-                    borderColor: theme.palette.primary.light,
-                }}
             >
-                <Avatar alt={exhibition.title} src={imageUrl} variant="circular"/>
+                <img
+                    src={imageUrl}
+                    style={{
+                        display: "block",
+                        borderRadius: '8px',
+                        width: '100%',
+                        maxWidth: '60px',
+                        aspectRatio: '1 / 1',
+                        objectFit: 'cover'
+                    }}
+                    alt={""}
+                />
                 <Stack pl={2} flexGrow={1}>
                     <Typography variant="body1" fontWeight={"bold"}>
                         {normalizeText(exhibition.title, 40)}
@@ -117,7 +128,7 @@ const ExhibitionListItem = ({exhibition}: { exhibition: Exhibition }) => {
                     }
                 </Stack>
                 <IconButton onClick={() => moveToExhibitionPage(exhibition.id)}>
-                    <ChevronRightIcon fontSize="medium" sx={{color: theme.palette.secondary.main}}/>
+                    <ChevronRightIcon fontSize="large"/>
                 </IconButton>
             </Stack>
         </>

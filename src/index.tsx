@@ -44,11 +44,11 @@ const theme = createTheme({
         primary: {
             // main: "#212121"
             main: "#000000",
-            light: "rgb(39,39,39)",
+            light: "rgba(236,236,236,0.44)",
         },
         secondary: {
             main: "#000000",
-            light: "#87a5da",
+            light: "rgba(153,185,239,0.13)",
             dark: "#000000"
         },
         divider: "rgba(0,0,0,0.56)"
