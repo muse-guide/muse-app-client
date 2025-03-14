@@ -44,17 +44,18 @@ const theme = createTheme({
         primary: {
             // main: "#212121"
             main: "#000000",
-            light: "rgba(236,236,236,0.44)",
+            light: "rgb(0,0,0)",
         },
         secondary: {
             main: "#000000",
-            light: "rgba(153,185,239,0.13)",
-            dark: "#000000"
+            light: "rgba(232,142,142,0.16)",
+            dark: "rgb(156,20,20)"
         },
         divider: "rgba(0,0,0,0.56)"
     },
     typography: {
         fontFamily: ["Inter", "sans-serif"].join(",")
+        // fontFamily: ["Merriweather", "serif"].join(",")
     },
     shape: {
         borderRadius: 28

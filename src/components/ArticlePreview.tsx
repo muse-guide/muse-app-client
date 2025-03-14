@@ -2,8 +2,8 @@ import {useTheme} from "@mui/material/styles";
 import {useTranslation} from "react-i18next";
 import React, {useEffect, useRef, useState} from "react";
 import {Button, Skeleton, Stack, Typography} from "@mui/material";
-import {TextRenderer} from "../../components/article/TextRenderer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import {TextRenderer} from "./article/TextRenderer";
 
 export const ArticlePreview = ({article, loading}: { article?: string, loading: boolean }) => {
     const theme = useTheme();
@@ -17,6 +17,8 @@ export const ArticlePreview = ({article, loading}: { article?: string, loading: 
             setIsOverflowing(contentRef.current.scrollHeight > 200);
         }
     }, [article]);
+
+    if (!article) return null;
 
     return (
         <Stack position={"relative"} spacing={2} mx={3} mb={showFull ? 2 : 3}>
@@ -65,7 +67,7 @@ export const ArticlePreview = ({article, loading}: { article?: string, loading: 
                                 setShowFull(true)
                             }}
                         >
-                            <Stack direction={"row"} alignItems={"center"} gap={0.5}>
+                            <Stack color={theme.palette.secondary.dark} direction={"row"} alignItems={"center"} gap={0.5}>
                                 <ExpandMoreIcon/>
                                 <Typography variant={"subtitle2"} fontWeight={'normal'} sx={{textTransform: 'none'}}>
                                     {t('expand')}

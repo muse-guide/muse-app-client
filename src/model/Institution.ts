@@ -1,4 +1,6 @@
-export interface Institution {
+import {Exposable} from "./common";
+
+export interface Institution extends Exposable {
     id: string;
     lang: string;
     langOptions: string[];

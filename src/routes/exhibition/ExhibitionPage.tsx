@@ -5,10 +5,12 @@ import {useTranslation} from "react-i18next";
 import {exhibitionService} from "../../service/ExhibitionService";
 import {Exhibition} from "../../model/Exhibition";
 import {ImageStepper} from "../../components/ImageStepper";
-import {ExhibitionDetails} from "./ExhibitionDetails";
 import {ExhibitList} from "./ExhibitList";
 import LanguageSelector from "../../components/LanguageSelector";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import {ExposableDetails} from "../../components/ExposableDetails";
+import {ArticlePreview} from "../../components/ArticlePreview";
+import Footer from "../../components/Footer";
 
 
 const ExhibitionPage = () => {
@@ -43,12 +45,14 @@ const ExhibitionPage = () => {
     const langOptions = useMemo(() => exhibition ? exhibition?.langOptions : undefined, [exhibition])
 
     return (
-        <Stack>
+        <Stack height={"100vh"} display={"flex"}>
             <ExhibitionMainBar loading={exhibitionLoading} langOptions={langOptions} institutionId={exhibition?.institutionId}/>
-            <Stack>
+            <Stack display={"flex"} flexGrow={1}>
                 <ImageStepper images={exhibition?.imageUrls} loading={exhibitionLoading}/>
-                <ExhibitionDetails exhibition={exhibition} loading={exhibitionLoading}/>
+                <ExposableDetails exposable={exhibition} loading={exhibitionLoading}/>
+                <ArticlePreview article={exhibition?.article} loading={exhibitionLoading}/>
                 <ExhibitList exhibitionId={exhibitionId}/>
+                <Footer/>
             </Stack>
         </Stack>
     );

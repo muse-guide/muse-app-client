@@ -1,4 +1,6 @@
-export interface Exhibit {
+import {Exposable} from "./common";
+
+export interface Exhibit extends Exposable {
     id: string;
     exhibitionId: string;
     number: number;

@@ -10,13 +10,16 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {useTheme} from "@mui/material/styles";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CloseIcon from "@mui/icons-material/Close";
+import {ExposableListEmpty, ExposableListItem, ExposableListItemSkeleton} from "../../components/ExposableListItem";
 
 export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
     const {t, i18n} = useTranslation();
     const [showSearch, setShowSearch] = useState<boolean>(false);
+    const theme = useTheme();
     const [exhibits, setExhibits] = useState<Exhibit[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [nextPageKey, setNextPageKey] = useState<string | undefined>(undefined);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getExhibitsAsync(i18n.language, exhibitionId, nextPageKey);
@@ -53,6 +56,10 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
         getExhibitsAsync(i18n.language, exhibitionId)
     }
 
+    const moveToExhibitPage = (exhibitId: string) => {
+        navigate(`/exhibits/${exhibitId}`);
+    };
+
     const ExhibitLoading = () => {
         return (
             <Stack width={"100%"} direction={"row"} display={"flex"} alignItems={"center"} gap={2}>
@@ -63,7 +70,16 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
     }
 
     return (
-        <Stack px={3} pt={1}>
+        <Stack
+            bgcolor={theme.palette.secondary.light}
+            width={"100%"}
+            pt={2}
+            pb={3}
+            px={3}
+            gap={3}
+            display={"flex"}
+            flexGrow={1}
+        >
             <Stack position={"relative"}>
                 {showSearch && <Box sx={{width: "100%", paddingBottom: 1}}>
                     <Zoom in={showSearch}>
@@ -76,25 +92,24 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
                     </Zoom>
                 </Box>}
                 {!showSearch && <Stack direction={"row"} justifyContent={"space-between"} paddingBottom={0} alignItems={"center"} width={"100%"}>
-                    <Typography variant="subtitle2">{t("exhibits")}</Typography>
+                    <Typography variant="h6" fontWeight={'bold'}>{t("exhibits")}</Typography>
                     <IconButton onClick={() => setShowSearch(!showSearch)}>
-                        <SearchIcon color={"secondary"}/>
+                        <SearchIcon color={"secondary"} fontSize={"medium"}/>
                     </IconButton>
                 </Stack>}
             </Stack>
             {loading
-                ? <Stack pt={1.5} pb={1} width={"100%"} gap={1}>
-                    {Array.from({length: 5}).map((_, index) => (
-                        <ExhibitLoading key={index}/>
-                    ))}
-                </Stack>
-                : <Stack pt={1.5} pb={1} width={"100%"} gap={1}>
+                ? <ExposableListItemSkeleton/>
+                : <Stack pt={0} pb={1} width={"100%"} gap={2}>
                     {exhibits.length === 0
-                        ? <Box width={"100%"} display={"flex"} justifyContent={"center"}>
-                            <Typography variant={"subtitle2"}>No items found</Typography>
-                        </Box>
+                        ? <ExposableListEmpty/>
                         : exhibits.map((exhibit, index) => (
-                            <ExhibitListItem key={exhibit.id + index} exhibit={exhibit}/>
+                            <ExposableListItem
+                                key={exhibit.id + index}
+                                itemNumber={exhibit.number}
+                                exposable={exhibit}
+                                onClick={moveToExhibitPage}
+                            />
                         ))}
                 </Stack>}
             {onLoadMore &&
@@ -114,33 +129,6 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
         </Stack>
     )
 }
-
-const ExhibitListItem = ({exhibit}: { exhibit: Exhibit }) => {
-    const navigate = useNavigate();
-    const theme = useTheme();
-
-    const moveToExhibitPage = (exhibitId: string) => {
-        navigate(`/exhibits/${exhibitId}`);
-    };
-
-    const imageUrl = useMemo(() => exhibit.imageUrls && exhibit?.imageUrls.length > 0 ? exhibit.imageUrls[0] : undefined, [exhibit])
-
-    return (
-        <>
-            <Stack onClick={() => moveToExhibitPage(exhibit.id)} direction={"row"} display={"flex"} alignItems={"center"}>
-                <Avatar alt={exhibit.title} src={imageUrl}/>
-                <Box pl={2} flexGrow={1}>
-                    <Typography variant="body2" fontWeight={"normal"}>
-                        {`${exhibit.number}. ${exhibit.title}`}
-                    </Typography>
-                </Box>
-                <IconButton onClick={() => moveToExhibitPage(exhibit.id)}>
-                    <ChevronRightIcon fontSize="medium" sx={{color: theme.palette.secondary.main}}/>
-                </IconButton>
-            </Stack>
-        </>
-    );
-};
 
 const SearchExhibit = (
     {

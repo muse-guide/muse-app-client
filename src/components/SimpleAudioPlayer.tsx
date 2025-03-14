@@ -4,6 +4,7 @@ import HeadphonesIcon from "@mui/icons-material/Headphones";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import CloseIcon from "@mui/icons-material/Close";
+import HeadphonesRoundedIcon from '@mui/icons-material/HeadphonesRounded';
 
 export const SimpleAudioPlayer = ({audioUrl}: {
     audioUrl: string | undefined
@@ -51,7 +52,7 @@ export const SimpleAudioPlayer = ({audioUrl}: {
     return (
         <Stack direction='row-reverse' alignItems='center' justifyContent='center' gap={1}>
             <Fab color="secondary" aria-label="audio" onClick={() => setPlaying(!playing)}>
-                {defaultState ? <HeadphonesIcon/> : playing ? <PauseIcon/> : <PlayArrowIcon/>}
+                {defaultState ? <HeadphonesRoundedIcon fontSize={"medium"}/> : playing ? <PauseIcon/> : <PlayArrowIcon/>}
             </Fab>
             <Zoom in={!defaultState}>
                 <Fab size={"small"} color="default" onClick={resetAudio}>

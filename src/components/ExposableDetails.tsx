@@ -1,9 +1,9 @@
-import {Institution} from "../../model/Institution";
 import React from "react";
 import {Box, Skeleton, Stack, Typography} from "@mui/material";
-import {SimpleAudioPlayer} from "../../components/SimpleAudioPlayer";
+import {Exposable} from "../model/common";
+import {SimpleAudioPlayer} from "./SimpleAudioPlayer";
 
-export const InstitutionDetails = ({institution, loading}: { institution?: Institution, loading: boolean }) => {
+export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, loading: boolean }) => {
     return (
         <Stack
             px={3}
@@ -27,7 +27,7 @@ export const InstitutionDetails = ({institution, loading}: { institution?: Insti
             <Box position={"absolute"} top={-28} right={24}>
                 {loading ?
                     <Skeleton variant={"circular"} width={56} height={56}/>
-                    : <SimpleAudioPlayer audioUrl={institution?.audio}/>
+                    : <SimpleAudioPlayer audioUrl={exposable?.audio}/>
                 }
             </Box>
 
@@ -36,13 +36,13 @@ export const InstitutionDetails = ({institution, loading}: { institution?: Insti
                     ? <Stack width={"100%"} height={32} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={240}/>
                     </Stack>
-                    : <Typography variant="h5" flexGrow={1} fontWeight={"bolder"}>{institution?.title}</Typography>
+                    : <Typography variant="h5" flexGrow={1} fontWeight={"bold"}>{exposable?.title}</Typography>
                 }
                 {loading
                     ? <Stack width={"100%"} height={24} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={300}/>
                     </Stack>
-                    : institution?.subtitle ?? <Typography variant="body1" color={"textSecondary"}>{institution?.subtitle}</Typography>
+                    : exposable?.subtitle ?? <Typography variant="body1" color={"textSecondary"}>{exposable?.subtitle}</Typography>
                 }
             </Stack>
         </Stack>

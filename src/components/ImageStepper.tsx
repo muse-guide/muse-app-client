@@ -33,7 +33,7 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
             <ImagePreview show={imgPrevDialog.isOpen} close={imgPrevDialog.closeDialog} img={images?.[activeStep]}/>
 
             {loading
-                ? <Skeleton variant="rectangular" width={"100%"} height={300}/>
+                ? <Skeleton variant="rectangular" width={"100%"} height={260}/>
                 : <Box sx={{
                     width: '100%',
                     display: "block"

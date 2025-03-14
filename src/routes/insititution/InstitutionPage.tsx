@@ -6,9 +6,10 @@ import {institutionService} from "../../service/InstitutionService";
 import {Institution} from "../../model/Institution";
 import {ImageStepper} from "../../components/ImageStepper";
 import LanguageSelector from "../../components/LanguageSelector";
-import {InstitutionDetails} from "./institutionDetails";
 import {ExhibitionList} from "./ExhibitionList";
-import {ArticlePreview} from "./ArticlePreview";
+import Footer from "../../components/Footer";
+import {ArticlePreview} from "../../components/ArticlePreview";
+import {ExposableDetails} from "../../components/ExposableDetails";
 
 const InstitutionPage = () => {
     const {institutionId} = useParams();
@@ -42,18 +43,14 @@ const InstitutionPage = () => {
     const langOptions = useMemo(() => institution ? institution?.langOptions : undefined, [institution])
 
     return (
-        <Stack>
+        <Stack height={"100vh"} display={"flex"}>
             <InstitutionMainBar loading={institutionLoading} langOptions={langOptions}/>
-            <Stack>
+            <Stack display={"flex"} flexGrow={1}>
                 <ImageStepper images={institution?.imageUrls} loading={institutionLoading}/>
-                <InstitutionDetails institution={institution} loading={institutionLoading}/>
+                <ExposableDetails exposable={institution} loading={institutionLoading}/>
                 <ArticlePreview article={institution?.article} loading={institutionLoading}/>
                 <ExhibitionList institutionId={institutionId}/>
-                <Stack height={100} width={"100%"} alignItems={"center"} justifyContent={"center"}>
-                    <Typography variant={"caption"} color={"textSecondary"}>
-                        Powered by <b>museo.guide</b>
-                    </Typography>
-                </Stack>
+                <Footer/>
             </Stack>
         </Stack>
     );
