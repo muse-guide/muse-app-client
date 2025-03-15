@@ -48,8 +48,8 @@ const theme = createTheme({
         },
         secondary: {
             main: "#000000",
-            light: "rgba(232,142,142,0.16)",
-            dark: "rgb(156,20,20)"
+            light: "rgba(213,213,213,0.16)",
+            dark: "rgb(0,0,0)"
         },
         divider: "rgba(0,0,0,0.56)"
     },

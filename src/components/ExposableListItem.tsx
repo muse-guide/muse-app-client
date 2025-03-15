@@ -29,12 +29,12 @@ export const ExposableListItem = ({exposable, onClick, itemNumber}: { exposable:
                     alt={""}
                 />
                 <Stack pl={2} flexGrow={1}>
-                    <Typography variant="body1" fontWeight={"bold"}>
+                    <Typography variant="body2" fontWeight={"bold"}>
                         {itemNumber ? `${itemNumber}. ` : ''}{normalizeText(exposable.title, 40)}
                     </Typography>
                     {exposable.subtitle &&
                         <Typography variant="body2" fontWeight={"normal"}>
-                            {normalizeText(exposable.subtitle, 40)}
+                            {normalizeText(exposable.subtitle, 48)}
                         </Typography>
                     }
                 </Stack>
