@@ -9,7 +9,6 @@ import {ExhibitList} from "./ExhibitList";
 import LanguageSelector from "../../components/LanguageSelector";
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import {ExposableDetails} from "../../components/ExposableDetails";
-import {ArticlePreview} from "../../components/ArticlePreview";
 import Footer from "../../components/Footer";
 
 

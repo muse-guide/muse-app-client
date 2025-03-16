@@ -1,4 +1,4 @@
-import {AppBar, Slide, Stack, Toolbar, Typography, useScrollTrigger} from "@mui/material";
+import {AppBar, Slide, Stack, Toolbar, useScrollTrigger} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useMemo, useState} from "react";
 import {useTranslation} from "react-i18next";
@@ -8,7 +8,6 @@ import {ImageStepper} from "../../components/ImageStepper";
 import LanguageSelector from "../../components/LanguageSelector";
 import {ExhibitionList} from "./ExhibitionList";
 import Footer from "../../components/Footer";
-import {ArticlePreview} from "../../components/ArticlePreview";
 import {ExposableDetails} from "../../components/ExposableDetails";
 
 const InstitutionPage = () => {
