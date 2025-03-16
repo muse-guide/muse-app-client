@@ -70,7 +70,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
 
     return (
         <Stack
-            bgcolor={theme.palette.secondary.light}
+            bgcolor={theme.palette.background.default}
             width={"100%"}
             pt={2}
             pb={3}

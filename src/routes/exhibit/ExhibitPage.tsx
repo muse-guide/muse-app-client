@@ -80,7 +80,7 @@ const ExhibitPage = () => {
                     }
                 </Box>
 
-                <Stack gap={0.5} width={"100%"}>
+                <Stack pt={1} gap={0.5} width={"100%"}>
                     {loading
                         ? <Stack width={"100%"} height={32} justifyContent={"center"}>
                             <Skeleton variant={"rectangular"} height={24} width={240}/>
@@ -117,7 +117,7 @@ const ExhibitPage = () => {
                     </Stack>
                 }
 
-                <Stack width={"100%"} pt={1.5}>
+                <Stack width={"100%"} pt={0.5}>
                     {loading
                         ? <Skeleton variant={"rectangular"} width={'100%'} height={130}/>
                         : <AudioPlayer audioUrl={exhibit?.audio}/>

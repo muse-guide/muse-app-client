@@ -48,7 +48,6 @@ const InstitutionPage = () => {
             <Stack display={"flex"} flexGrow={1}>
                 <ImageStepper images={institution?.imageUrls} loading={institutionLoading}/>
                 <ExposableDetails exposable={institution} loading={institutionLoading}/>
-                <ArticlePreview article={institution?.article} loading={institutionLoading}/>
                 <ExhibitionList institutionId={institutionId}/>
                 <Footer/>
             </Stack>

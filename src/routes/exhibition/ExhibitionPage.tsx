@@ -50,7 +50,6 @@ const ExhibitionPage = () => {
             <Stack display={"flex"} flexGrow={1}>
                 <ImageStepper images={exhibition?.imageUrls} loading={exhibitionLoading}/>
                 <ExposableDetails exposable={exhibition} loading={exhibitionLoading}/>
-                <ArticlePreview article={exhibition?.article} loading={exhibitionLoading}/>
                 <ExhibitList exhibitionId={exhibitionId}/>
                 <Footer/>
             </Stack>
