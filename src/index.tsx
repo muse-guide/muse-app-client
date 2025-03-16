@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Root from "./routes/Root";
-import { createTheme, ThemeProvider } from "@mui/material";
+import {createTheme, ThemeProvider} from "@mui/material";
 import ExhibitPage from "./routes/exhibit/ExhibitPage";
 import ErrorPage from "./routes/ErrorPage";
 import "./translation";
@@ -15,24 +15,24 @@ const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
-        errorElement: <ErrorPage />,
+        element: <Root/>,
+        errorElement: <ErrorPage/>,
         children: [
             {
                 path: "/",
-                element: <MainPage />
+                element: <MainPage/>
             },
             {
                 path: "exhibitions/:exhibitionId",
-                element: <ExhibitionPage />
+                element: <ExhibitionPage/>
             },
             {
                 path: "institutions/:institutionId",
-                element: <InstitutionPage />
+                element: <InstitutionPage/>
             },
             {
                 path: "exhibits/:exhibitId",
-                element: <ExhibitPage />
+                element: <ExhibitPage/>
             },
         ]
     }
@@ -80,7 +80,7 @@ root.render(
     <React.StrictMode>
         <React.Suspense fallback="">
             <ThemeProvider theme={theme}>
-                <RouterProvider router={router} />
+                <RouterProvider router={router}/>
             </ThemeProvider>
         </React.Suspense>
     </React.StrictMode>

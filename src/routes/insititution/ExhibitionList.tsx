@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Exhibition} from "../../model/Exhibition";
 import {exhibitionService} from "../../service/ExhibitionService";
-import {Box, Skeleton, Stack, Typography} from "@mui/material";
+import {Stack, Typography} from "@mui/material";
 import {LoadingButton} from "@mui/lab";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {useTheme} from "@mui/material/styles";

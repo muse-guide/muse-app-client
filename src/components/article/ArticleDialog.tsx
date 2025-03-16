@@ -1,9 +1,9 @@
-import { Box, Dialog, DialogContent, IconButton, Stack, Typography } from "@mui/material";
+import {Box, Dialog, DialogContent, IconButton, Stack, Typography} from "@mui/material";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import { TextRenderer } from "./TextRenderer";
-import { normalizeText } from "../ComponentUtils";
-import { Configuration } from "../../configuration";
+import {TextRenderer} from "./TextRenderer";
+import {normalizeText} from "../ComponentUtils";
+import {Configuration} from "../../configuration";
 
 interface DescriptionDialogProps {
     show: boolean;
@@ -15,7 +15,7 @@ interface DescriptionDialogProps {
 export default function ArticleDialog(props: DescriptionDialogProps) {
     return (
         <Dialog fullScreen open={props.show} onClose={() => props.close()}>
-            <DialogContent sx={{ paddingX: 3, paddingTop: 1 }}>
+            <DialogContent sx={{paddingX: 3, paddingTop: 1}}>
                 <Stack
                     direction={"row"}
                     sx={{
@@ -41,11 +41,11 @@ export default function ArticleDialog(props: DescriptionDialogProps) {
                         </Typography>
                     </Box>
 
-                    <IconButton aria-label="close" onClick={() => props.close()} sx={{ padding: 0 }}>
-                        <CloseIcon color="primary" fontSize="inherit" />
+                    <IconButton aria-label="close" onClick={() => props.close()} sx={{padding: 0}}>
+                        <CloseIcon color="primary" fontSize="inherit"/>
                     </IconButton>
                 </Stack>
-                <TextRenderer article={props.article} />
+                <TextRenderer article={props.article}/>
             </DialogContent>
         </Dialog>
     );

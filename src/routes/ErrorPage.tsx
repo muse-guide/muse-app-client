@@ -1,17 +1,17 @@
 import React from "react";
-import { Box, Stack, Typography } from "@mui/material";
+import {Box, Stack, Typography} from "@mui/material";
 import ApplicationMainBar from "../components/ApplicationMainBar";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const ErrorPage = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
 
     return (
         <Stack px={2} height="100svh" display="flex" alignItems="center" justifyContent="center">
-            <ApplicationMainBar />
+            <ApplicationMainBar/>
             <Stack alignItems={"center"}>
                 <Box width="100%" justifyContent="center" display="flex" paddingBottom={2}>
-                    <img src="/qr.png" width="40%" />
+                    <img src="/qr.png" width="40%"/>
                 </Box>
                 <Typography variant={"h5"} fontWeight={"bolder"}>
                     {t("oops")}

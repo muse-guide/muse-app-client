@@ -1,6 +1,5 @@
 import {Box, Dialog, DialogContent, DialogTitle, Grid2, IconButton} from "@mui/material";
 import React from "react";
-import {CircleFlag} from "react-circle-flags";
 import CloseIcon from "@mui/icons-material/Close";
 import {useTranslation} from "react-i18next";
 import {useDialog} from "./hooks";

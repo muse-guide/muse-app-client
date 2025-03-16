@@ -7,7 +7,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import Forward10Icon from "@mui/icons-material/Forward10";
 import Replay10Icon from "@mui/icons-material/Replay10";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 interface AudioPlayerProps {
     audioSrc?: string;
@@ -19,7 +19,7 @@ const Player = (props: AudioPlayerProps) => {
     const navigate = useNavigate();
 
     const moveToExhibitPage = (exhibitId?: string) => {
-        if (exhibitId) navigate(`/exh/${exhibitId}`, { replace: true });
+        if (exhibitId) navigate(`/exh/${exhibitId}`, {replace: true});
     };
     return (
         <AudioPlayer
@@ -29,12 +29,12 @@ const Player = (props: AudioPlayerProps) => {
             layout="stacked"
             progressUpdateInterval={200}
             customIcons={{
-                play: <PlayCircleIcon color="secondary" sx={{ height: "84px", fontSize: "64px" }} />,
-                pause: <PauseCircleIcon fontSize="inherit" color={"secondary"} />,
-                previous: <SkipPreviousIcon fontSize="inherit" color={props.prevExhibitId ? "primary" : "disabled"} />,
-                next: <SkipNextIcon fontSize="inherit" color={props.nextExhibitId ? "primary" : "disabled"} />,
-                forward: <Forward10Icon fontSize="inherit" color={"primary"} />,
-                rewind: <Replay10Icon fontSize="inherit" color={"primary"} />,
+                play: <PlayCircleIcon color="secondary" sx={{height: "84px", fontSize: "64px"}}/>,
+                pause: <PauseCircleIcon fontSize="inherit" color={"secondary"}/>,
+                previous: <SkipPreviousIcon fontSize="inherit" color={props.prevExhibitId ? "primary" : "disabled"}/>,
+                next: <SkipNextIcon fontSize="inherit" color={props.nextExhibitId ? "primary" : "disabled"}/>,
+                forward: <Forward10Icon fontSize="inherit" color={"primary"}/>,
+                rewind: <Replay10Icon fontSize="inherit" color={"primary"}/>,
             }}
             customVolumeControls={[]}
             customAdditionalControls={[]}

@@ -1,5 +1,5 @@
 import {useTheme} from "@mui/material/styles";
-import React, {useMemo} from "react";
+import React from "react";
 import {Box, MobileStepper, Skeleton} from "@mui/material";
 import SwipeableViews from "react-swipeable-views";
 import {ImagePreview} from "./ImagePreview";

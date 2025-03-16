@@ -1,11 +1,9 @@
-import { AppBar, Box, IconButton, Slide, Toolbar, Typography, useScrollTrigger } from "@mui/material";
+import {AppBar, Box, IconButton, Slide, Toolbar, Typography, useScrollTrigger} from "@mui/material";
 import React from "react";
-import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
-import { Configuration } from "../configuration";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { normalizeText } from "./ComponentUtils";
+import {normalizeText} from "./ComponentUtils";
 
 interface ContentMainBarProps {
     loading: boolean;
@@ -30,10 +28,10 @@ export default function ContentMainBar(props: ContentMainBarProps) {
             <Slide appear={false} direction="down" in={!trigger}>
                 <AppBar elevation={0} color="transparent" sx={{background: 'linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%)'}}>
                     {!props.loading && (
-                        <Toolbar sx={{ paddingX: 3 }}>
+                        <Toolbar sx={{paddingX: 3}}>
                             {!hideBackArrow && (
-                                <IconButton sx={{ padding: 0 }} onClick={() => navigateTo(props.parentPageUrl)}>
-                                    <ArrowBackRoundedIcon sx={{ display: "flex" }} color={"primary"} />
+                                <IconButton sx={{padding: 0}} onClick={() => navigateTo(props.parentPageUrl)}>
+                                    <ArrowBackRoundedIcon sx={{display: "flex"}} color={"primary"}/>
                                 </IconButton>
                             )}
 
@@ -51,7 +49,7 @@ export default function ContentMainBar(props: ContentMainBarProps) {
                                 </Typography>
                             </Box>
 
-                            {!hideLangSelector && <LanguageSelector languages={props.langOptions ?? []} />}
+                            {!hideLangSelector && <LanguageSelector languages={props.langOptions ?? []}/>}
                         </Toolbar>
                     )}
                 </AppBar>
