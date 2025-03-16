@@ -1,14 +1,13 @@
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Exhibit} from "../../model/Exhibit";
 import {exhibitService} from "../../service/ExhibitService";
-import {Avatar, Box, Chip, IconButton, InputAdornment, Skeleton, Stack, TextField, Typography, Zoom} from "@mui/material";
+import {Box, Chip, IconButton, InputAdornment, Skeleton, Stack, TextField, Typography, Zoom} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {LoadingButton} from "@mui/lab";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {useTheme} from "@mui/material/styles";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CloseIcon from "@mui/icons-material/Close";
 import {ExposableListEmpty, ExposableListItem, ExposableListItemSkeleton} from "../../components/ExposableListItem";
 
@@ -115,15 +114,15 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
             {onLoadMore &&
                 <LoadingButton
                     loading={loading}
-                    loadingPosition={"start"}
-                    startIcon={<ExpandMoreIcon/>}
-                    variant="text"
-                    color={"secondary"}
-                    size={"medium"}
-                    fullWidth sx={{textTransform: "none", fontSize: "16px"}}
+                    sx={{fontSize: '15px'}}
                     onClick={onLoadMore}
                 >
-                    {t("loadMore")}
+                    <Stack color={theme.palette.secondary.dark} direction={"row"} alignItems={"center"} gap={0.5}>
+                        <ExpandMoreIcon/>
+                        <Typography variant={"subtitle2"} fontWeight={'normal'} sx={{textTransform: 'none'}}>
+                            {t('loadMore')}
+                        </Typography>
+                    </Stack>
                 </LoadingButton>
             }
         </Stack>
@@ -162,7 +161,8 @@ const SearchExhibit = (
                 ? <Box>
                     <Chip label={`${t("number")}: ${searchTerm}`} onDelete={onSearchCancel} sx={{minWidth: 110, justifyContent: 'space-between'}}/>
                 </Box>
-                : <TextField
+                :
+                <TextField
                     fullWidth
                     value={searchTerm}
                     disabled={searching}
@@ -185,5 +185,6 @@ const SearchExhibit = (
             }
 
         </>
-    );
+    )
+        ;
 }

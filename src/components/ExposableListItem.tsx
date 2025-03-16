@@ -28,7 +28,7 @@ export const ExposableListItem = ({exposable, onClick, itemNumber}: { exposable:
                     }}
                     alt={""}
                 />
-                <Stack pl={2} flexGrow={1}>
+                <Stack px={2} flexGrow={1}>
                     <Typography variant="body2" fontWeight={"bold"}>
                         {itemNumber ? `${itemNumber}. ` : ''}{normalizeText(exposable.title, 40)}
                     </Typography>

@@ -27,11 +27,11 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
             <Box position={"absolute"} top={-28} right={24}>
                 {loading ?
                     <Skeleton variant={"circular"} width={56} height={56}/>
-                    : <SimpleAudioPlayer audioUrl={exposable?.audio}/>
+                    : exposable?.audio && <SimpleAudioPlayer audioUrl={exposable?.audio}/>
                 }
             </Box>
 
-            <Stack gap={0} width={"100%"} pt={1.5}>
+            <Stack gap={0.5} width={"100%"} pt={2}>
                 {loading
                     ? <Stack width={"100%"} height={32} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={240}/>

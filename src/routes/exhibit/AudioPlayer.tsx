@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 import {IconButton, Slider, Stack, Typography} from "@mui/material";
-import Replay10Icon from "@mui/icons-material/Replay10";
-import PauseCircleIcon from "@mui/icons-material/PauseCircle";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import Forward10Icon from "@mui/icons-material/Forward10";
+import Forward10RoundedIcon from '@mui/icons-material/Forward10Rounded';
+import Replay10RoundedIcon from '@mui/icons-material/Replay10Rounded';
+import PlayCircleFilledWhiteRoundedIcon from '@mui/icons-material/PlayCircleFilledWhiteRounded';
+import PauseCircleRoundedIcon from '@mui/icons-material/PauseCircleRounded';
 
 export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
     const [isPlaying, setIsPlaying] = useState(false)
@@ -77,7 +77,7 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
     }
 
     return (
-        <Stack width={"100%"} pt={1.5}>
+        <Stack width={"100%"} pt={1.5} px={1}>
             <Stack display={"block"}>
                 <Stack>
                     <Slider
@@ -96,16 +96,16 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
                 <Stack mt={-1.5}>
                     <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
                         <IconButton onClick={rewind10Sec} disabled={!audioAvailable}>
-                            <Replay10Icon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
+                            <Replay10RoundedIcon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
                         </IconButton>
                         <IconButton onClick={handlePlayPause} disabled={!audioAvailable}>
                             {isPlaying
-                                ? <PauseCircleIcon sx={{fontSize: 72}} color={audioAvailable ? "secondary" : "disabled"}/>
-                                : <PlayCircleIcon sx={{fontSize: 72}} color={audioAvailable ? "secondary" : "disabled"}/>
+                                ? <PauseCircleRoundedIcon sx={{fontSize: 72}} color={audioAvailable ? "secondary" : "disabled"}/>
+                                : <PlayCircleFilledWhiteRoundedIcon sx={{fontSize: 72}} color={audioAvailable ? "secondary" : "disabled"}/>
                             }
                         </IconButton>
                         <IconButton onClick={forward10Sec} disabled={!audioAvailable}>
-                            <Forward10Icon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
+                            <Forward10RoundedIcon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
                         </IconButton>
                     </Stack>
                 </Stack>

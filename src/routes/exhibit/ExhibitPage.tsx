@@ -1,4 +1,4 @@
-import {AppBar, Avatar, Box, IconButton, Skeleton, Slide, Stack, Toolbar, Typography, useScrollTrigger} from "@mui/material";
+import {AppBar, Box, Button, IconButton, Skeleton, Slide, Stack, Toolbar, Typography, useScrollTrigger} from "@mui/material";
 import {useNavigate, useParams} from "react-router-dom";
 import React, {useEffect, useMemo, useState} from "react";
 import {exhibitService} from "../../service/ExhibitService";
@@ -8,14 +8,15 @@ import {Exhibit} from "../../model/Exhibit";
 import {useDialog} from "../../components/hooks";
 import LanguageSelector from "../../components/LanguageSelector";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import {AudioPlayer} from "./AudioPlayer";
 import {ExhibitImage} from "./ExhibitImage";
+import {useTheme} from "@mui/material/styles";
+import MenuBookRoundedIcon from '@mui/icons-material/MenuBookRounded';
 
 const ExhibitPage = () => {
     const {exhibitId} = useParams();
     const {t, i18n} = useTranslation();
-
+    const theme = useTheme();
     const navigate = useNavigate();
     const [exhibit, setExhibit] = useState<Exhibit>();
     const [loading, setLoading] = useState<boolean>(false);
@@ -69,8 +70,8 @@ const ExhibitPage = () => {
                             width={'100%'}
                             sx={{
                                 display: "block",
-                                maxWidth: '280px',
-                                maxHeight: '280px',
+                                maxWidth: '260px',
+                                maxHeight: '260px',
                                 height: '100%',
                                 aspectRatio: '1 / 1',
                             }}
@@ -79,23 +80,42 @@ const ExhibitPage = () => {
                     }
                 </Box>
 
-                <Stack width={"100%"} pt={2} gap={0.5}>
+                <Stack gap={0.5} width={"100%"}>
                     {loading
-                        ? <Skeleton variant={"rectangular"} height={24} width={240}/>
-                        : <Stack direction={"row"} display={"flex"} width={"100%"} alignItems={"center"}>
-                            <Typography variant="body1" flexGrow={1} fontWeight={"bolder"}>
-                                {exhibit?.title}
-                            </Typography>
-                            <IconButton sx={{paddingRight: 0}} onClick={descAvailable ? descDialog.openDialog : undefined}>
-                                <DescriptionOutlinedIcon sx={{fontSize: 28}} fontSize={"medium"} color={descAvailable ? "secondary" : "disabled"}/>
-                            </IconButton>
+                        ? <Stack width={"100%"} height={32} justifyContent={"center"}>
+                            <Skeleton variant={"rectangular"} height={24} width={240}/>
                         </Stack>
+                        : <Typography variant="h5" flexGrow={1} fontWeight={"bold"}>{exhibit?.title}</Typography>
                     }
                     {loading
-                        ? <Skeleton variant={"rectangular"} height={48} width={300}/>
-                        : <Typography variant="body1">{exhibit?.subtitle}</Typography>
+                        ? <Stack width={"100%"} height={24} justifyContent={"center"}>
+                            <Skeleton variant={"rectangular"} height={24} width={300}/>
+                        </Stack>
+                        : exhibit?.subtitle ?? <Typography variant="body1" color={"textSecondary"}>{exhibit?.subtitle}</Typography>
                     }
                 </Stack>
+
+                {descAvailable &&
+                    <Stack
+                        display={"flex"}
+                        color={theme.palette.text.secondary}
+                        width={"100%"}
+                        direction={"row"}
+                        justifyContent={"start"}
+                        alignItems={"center"}
+                        pt={1}
+                    >
+                        <Button
+                            variant="text"
+                            color={"inherit"}
+                            sx={{textTransform: 'none'}}
+                            startIcon={<MenuBookRoundedIcon color={"inherit"} fontSize={"large"}/>}
+                            onClick={descDialog.openDialog}
+                        >
+                            <Typography variant={"subtitle2"} color={"textSecondary"}>{t('learnMore')}</Typography>
+                        </Button>
+                    </Stack>
+                }
 
                 <Stack width={"100%"} pt={1.5}>
                     {loading
@@ -145,7 +165,7 @@ function ExhibitMainBar(props: ExhibitMainBarProps) {
                                 paddingRight: 0,
                             }}
                         >
-                            <Typography variant="overline">
+                            <Typography variant="body2" sx={{fontWeight: 'bold', textTransform: 'none'}}>
                                 Now playing
                             </Typography>
                         </Box>

@@ -25,7 +25,7 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                     style={{
                         display: "block",
                         width: '100%',
-                        maxWidth: '280px',
+                        maxWidth: '260px',
                         aspectRatio: '1 / 1',
                         objectFit: 'cover',
                         borderRadius: 16,
@@ -36,7 +36,7 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                 <Stack
                     position={"relative"}
                     width={'100%'}
-                    maxWidth={280}
+                    maxWidth={260}
                 >
                     <Stack
                         position={"absolute"}
@@ -47,7 +47,7 @@ export const ExhibitImage = ({imageUrls}: { imageUrls?: string[] }) => {
                         right={0}
                         width={'100%'}
                         height={56}
-                        maxWidth={280}
+                        maxWidth={260}
                         sx={{
                             background: imageAvailable ? 'linear-gradient(180deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.75) 100%)' : undefined,
                         }}
