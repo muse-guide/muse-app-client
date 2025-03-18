@@ -7,10 +7,10 @@ import {Exhibition} from "../../model/Exhibition";
 import {ImageStepper} from "../../components/ImageStepper";
 import {ExhibitList} from "./ExhibitList";
 import LanguageSelector from "../../components/LanguageSelector";
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import {ExposableDetails} from "../../components/ExposableDetails";
 import Footer from "../../components/Footer";
-
+import ArrowCircleLeftRoundedIcon from '@mui/icons-material/ArrowCircleLeftRounded';
+import {useTheme} from "@mui/material/styles";
 
 const ExhibitionPage = () => {
     const {exhibitionId} = useParams();
@@ -67,6 +67,7 @@ interface ExhibitionMainBarProps {
 function ExhibitionMainBar(props: ExhibitionMainBarProps) {
     const trigger = useScrollTrigger();
     const navigate = useNavigate();
+    const theme = useTheme();
 
     const navigateToInstitution = () => {
         if (props.institutionId) navigate(`/institutions/${props.institutionId}`);
@@ -83,7 +84,14 @@ function ExhibitionMainBar(props: ExhibitionMainBarProps) {
                         }}>
                             {props.institutionId &&
                                 <IconButton sx={{padding: 0}} onClick={navigateToInstitution}>
-                                    <ChevronLeftIcon fontSize={"large"} sx={{display: "flex", color: 'white'}}/>
+                                    <ArrowCircleLeftRoundedIcon
+                                        fontSize={"large"}
+                                        sx={{
+                                            display: "flex",
+                                            color: theme.palette.secondary.light,
+                                            opacity: 1
+                                        }}
+                                    />
                                 </IconButton>
                             }
                             <Box/>

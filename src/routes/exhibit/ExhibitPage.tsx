@@ -85,7 +85,7 @@ const ExhibitPage = () => {
                         ? <Stack width={"100%"} height={32} justifyContent={"center"}>
                             <Skeleton variant={"rectangular"} height={24} width={240}/>
                         </Stack>
-                        : <Typography variant="h5" flexGrow={1} fontWeight={"bold"}>{exhibit?.title}</Typography>
+                        : <Typography variant="h6" flexGrow={1} fontWeight={"bold"}>{exhibit?.title}</Typography>
                     }
                     {loading
                         ? <Stack width={"100%"} height={24} justifyContent={"center"}>
@@ -95,7 +95,11 @@ const ExhibitPage = () => {
                     }
                 </Stack>
 
-                {descAvailable &&
+                {loading
+                    ? <Stack pt={1} width={"100%"} height={32} justifyContent={"center"}>
+                        <Skeleton variant={"rectangular"} height={24} width={240}/>
+                    </Stack>
+                    : descAvailable &&
                     <Stack
                         display={"flex"}
                         color={theme.palette.text.secondary}
@@ -119,7 +123,9 @@ const ExhibitPage = () => {
 
                 <Stack width={"100%"} pt={0.5}>
                     {loading
-                        ? <Skeleton variant={"rectangular"} width={'100%'} height={130}/>
+                        ? <Stack pt={1.5} width={"100%"} justifyContent={"center"}>
+                            <Skeleton variant={"rectangular"} width={'100%'} height={100}/>
+                        </Stack>
                         : <AudioPlayer audioUrl={exhibit?.audio}/>
                     }
                 </Stack>
@@ -140,6 +146,7 @@ interface ExhibitMainBarProps {
 function ExhibitMainBar(props: ExhibitMainBarProps) {
     const trigger = useScrollTrigger();
     const navigate = useNavigate();
+    const {t} = useTranslation();
 
     const navigateTo = (destination?: string) => {
         if (destination) navigate(destination);
@@ -152,7 +159,7 @@ function ExhibitMainBar(props: ExhibitMainBarProps) {
                     <Toolbar sx={{paddingX: 3}}>
                         {!props.loading &&
                             <IconButton sx={{padding: 0}} onClick={() => navigateTo(props.parentPageUrl)}>
-                                <KeyboardArrowDownIcon sx={{display: "flex"}} color={"primary"}/>
+                                <KeyboardArrowDownIcon fontSize={"large"} sx={{display: "flex"}} color={"primary"}/>
                             </IconButton>
                         }
 
@@ -166,7 +173,7 @@ function ExhibitMainBar(props: ExhibitMainBarProps) {
                             }}
                         >
                             <Typography variant="body2" sx={{fontWeight: 'bold', textTransform: 'none'}}>
-                                Now playing
+                                {t('nowPlaying')}
                             </Typography>
                         </Box>
 

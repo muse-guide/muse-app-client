@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {Exhibit} from "../../model/Exhibit";
 import {exhibitService} from "../../service/ExhibitService";
-import {Box, Chip, IconButton, InputAdornment, Skeleton, Stack, TextField, Typography, Zoom} from "@mui/material";
+import {Box, Chip, IconButton, InputAdornment, Stack, TextField, Typography, Zoom} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {LoadingButton} from "@mui/lab";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -59,15 +59,6 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
         navigate(`/exhibits/${exhibitId}`);
     };
 
-    const ExhibitLoading = () => {
-        return (
-            <Stack width={"100%"} direction={"row"} display={"flex"} alignItems={"center"} gap={2}>
-                <Skeleton variant="circular" width={40} height={40}/>
-                <Skeleton variant="rectangular" width={"80%"} height={32}/>
-            </Stack>
-        )
-    }
-
     return (
         <Stack
             bgcolor={theme.palette.background.default}
@@ -91,7 +82,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
                     </Zoom>
                 </Box>}
                 {!showSearch && <Stack direction={"row"} justifyContent={"space-between"} paddingBottom={0} alignItems={"center"} width={"100%"}>
-                    <Typography variant="h6" fontWeight={'bold'}>{t("exhibits")}</Typography>
+                    <Typography variant="body1" fontWeight={'bold'}>{t("exhibits")}</Typography>
                     <IconButton onClick={() => setShowSearch(!showSearch)}>
                         <SearchIcon color={"secondary"} fontSize={"medium"}/>
                     </IconButton>

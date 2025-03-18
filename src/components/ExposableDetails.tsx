@@ -23,14 +23,13 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                 alignItems: "flex-start",
                 justifyContent: "center",
                 maxHeight: "300px",
-                paddingTop: "40px",
-                paddingBottom: "32px",
+                paddingTop: "32px",
+                paddingBottom: "24px",
                 marginTop: "-32px",
                 zIndex: 1,
                 backgroundColor: theme.palette.secondary.light,
                 borderTopLeftRadius: "24px",
                 borderTopRightRadius: "24px",
-                // borderRadius: "24px",
                 position: "relative"
             }}
         >
@@ -50,12 +49,12 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                 }
             </Box>
 
-            <Stack gap={0.5} width={"100%"}>
+            <Stack gap={0} width={"100%"}>
                 {loading
                     ? <Stack width={"100%"} height={32} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={240}/>
                     </Stack>
-                    : <Typography variant="h5" flexGrow={1} fontWeight={"bold"}>{exposable?.title}</Typography>
+                    : <Typography variant="h6" flexGrow={1} fontWeight={"bold"}>{exposable?.title}</Typography>
                 }
                 {loading
                     ? <Stack width={"100%"} height={24} justifyContent={"center"}>
@@ -67,7 +66,12 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                     </Typography>
                 }
 
-                {exposable?.article &&
+                {loading
+                    ? <Stack
+                        pt={1.5} width={"100%"} height={32} justifyContent={"center"}>
+                        <Skeleton variant={"rectangular"} height={24} width={240}/>
+                    </Stack>
+                    : exposable?.article &&
                     <Stack
                         display={"flex"}
                         color={theme.palette.text.secondary}

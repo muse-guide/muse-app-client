@@ -59,7 +59,7 @@ export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
             flexGrow={1}
         >
             <Stack position={"relative"}>
-                <Typography variant="h6" fontWeight={'bold'}>{t("exhibitions")}</Typography>
+                <Typography variant="body1" fontWeight={'bold'}>{t("exhibitions")}</Typography>
             </Stack>
             {loading
                 ? <ExposableListItemSkeleton/>

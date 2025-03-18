@@ -3,7 +3,7 @@ import React, {useMemo} from "react";
 import {langMap} from "../model/common";
 
 // TODO: change flag provider or create own flag component
-export const LangIcon = ({lang, height = "24"}: { lang: string, height?: string }) => {
+export const LangIcon = ({lang, height = "29.17"}: { lang: string, height?: string }) => {
     const resolvedLang = useMemo(() => langMap.get(lang) ?? "", [lang])
 
     return (

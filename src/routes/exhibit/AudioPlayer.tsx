@@ -79,7 +79,8 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
     return (
         <Stack width={"100%"} pt={1.5} px={1}>
             <Stack display={"block"}>
-                <Stack>
+                <Stack direction={"row"} gap={2} justifyContent={"space-between"} alignItems={"center"} width={"100%"}>
+                    <Typography variant="overline">{formatDuration(currentTime)}</Typography>
                     <Slider
                         size="small"
                         color="secondary"
@@ -88,10 +89,7 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
                         max={duration}
                         disabled={!audioAvailable}
                     />
-                    <Stack direction={"row"} justifyContent={"space-between"} mt={-2}>
-                        <Typography variant="overline" color={"gray"}>{formatDuration(currentTime)}</Typography>
-                        <Typography variant="overline" color={"gray"}>{formatDuration(duration)}</Typography>
-                    </Stack>
+                    <Typography variant="overline">{formatDuration(duration)}</Typography>
                 </Stack>
                 <Stack mt={-1.5}>
                     <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
