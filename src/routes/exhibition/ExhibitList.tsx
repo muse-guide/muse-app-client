@@ -26,6 +26,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
 
     const getExhibitsAsync = async (lang: string, exhibitionId?: string, nextPageKey?: string, number?: number) => {
         if (!exhibitionId) return;
+        if (exhibits.length > 0) return
         setLoading(true);
         try {
             const results = await exhibitService.getExhibitsFor(exhibitionId, lang, nextPageKey, number);

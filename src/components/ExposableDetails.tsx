@@ -11,6 +11,7 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
     const theme = useTheme();
     const {t} = useTranslation();
     const descDialog = useDialog()
+    const resourceLoading = !exposable || loading;
 
     return (
         <Stack
@@ -33,7 +34,7 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                 position: "relative"
             }}
         >
-            {exposable?.article &&
+            {!resourceLoading && exposable?.article &&
                 <ArticleDialog
                     show={descDialog.isOpen}
                     close={descDialog.closeDialog}
@@ -43,20 +44,20 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
             }
 
             <Box position={"absolute"} top={-28} right={24}>
-                {loading ?
+                {resourceLoading ?
                     <Skeleton variant={"circular"} width={56} height={56}/>
                     : exposable?.audio && <SimpleAudioPlayer audioUrl={exposable?.audio}/>
                 }
             </Box>
 
             <Stack gap={0} width={"100%"}>
-                {loading
+                {resourceLoading
                     ? <Stack width={"100%"} height={32} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={240}/>
                     </Stack>
                     : <Typography variant="h6" flexGrow={1} fontWeight={"bold"}>{exposable?.title}</Typography>
                 }
-                {loading
+                {resourceLoading
                     ? <Stack width={"100%"} height={24} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={300}/>
                     </Stack>
@@ -66,9 +67,8 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                     </Typography>
                 }
 
-                {loading
-                    ? <Stack
-                        pt={1.5} width={"100%"} height={32} justifyContent={"center"}>
+                {resourceLoading
+                    ? <Stack pt={1.5} width={"100%"} height={46} alignItems={"start"} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={240}/>
                     </Stack>
                     : exposable?.article &&

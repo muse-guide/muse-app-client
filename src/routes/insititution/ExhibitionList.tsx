@@ -23,6 +23,7 @@ export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
 
     const getExhibitionsAsync = async (lang: string, institutionId?: string, nextPageKey?: string) => {
         if (!institutionId) return;
+        if (exhibitions.length > 0) return;
         setLoading(true);
         try {
             const results = await exhibitionService.getExhibitionsFor(institutionId, lang, nextPageKey);

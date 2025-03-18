@@ -23,6 +23,7 @@ const InstitutionPage = () => {
 
     const getInstitutionAsync = async (lang: string, institutionId?: string) => {
         if (!institutionId) return;
+        if (institution) return;
         setInstitutionLoading(true);
         try {
             const institution = await institutionService.getInstitution(lang, institutionId);

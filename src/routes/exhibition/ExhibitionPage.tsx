@@ -25,6 +25,7 @@ const ExhibitionPage = () => {
 
     const getExhibitionAsync = async (lang: string, exhibitionId?: string) => {
         if (!exhibitionId) return;
+        if (exhibition) return;
         setExhibitionLoading(true);
         try {
             const exhibition = await exhibitionService.getExhibition(lang, exhibitionId);
