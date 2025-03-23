@@ -2,8 +2,9 @@ import {useTheme} from "@mui/material/styles";
 import React from "react";
 import {Box, MobileStepper, Skeleton} from "@mui/material";
 import SwipeableViews from "react-swipeable-views";
-import {ImagePreview} from "./ImagePreview";
 import {useDialog} from "./hooks";
+
+import {ExposableImageGallery} from "./ExposableImageGallery";
 
 interface ImageStepperProps {
     images?: string[];
@@ -30,10 +31,10 @@ export const ImageStepper = ({images, loading}: ImageStepperProps) => {
             justifyContent: "center",
             position: "relative",
         }}>
-            <ImagePreview show={imgPrevDialog.isOpen} close={imgPrevDialog.closeDialog} img={images?.[activeStep]}/>
+            <ExposableImageGallery show={imgPrevDialog.isOpen} close={imgPrevDialog.closeDialog} images={images ?? []}/>
 
             {loading || !images
-                ? <Skeleton variant="rectangular" width={"100%"} height={280} sx={{ display: 'block', overflow: 'hidden', objectFit: 'cover' }}/>
+                ? <Skeleton variant="rectangular" width={"100%"} height={280} sx={{display: 'block', overflow: 'hidden', objectFit: 'cover'}}/>
                 : <Box sx={{
                     width: '100%',
                     display: "block"
