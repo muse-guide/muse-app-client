@@ -46,15 +46,20 @@ const theme = createTheme({
             main: "#000000",
             light: "rgb(0,0,0)",
         },
+        text: {
+            primary: "#424242",
+            secondary: "#575757"
+        },
         secondary: {
             main: "#000000",
-            light: "#f2f2f2",
+            light: "#f0f4f9",
             dark: "rgb(0,0,0)"
         },
         divider: "rgba(0,0,0,0.56)"
     },
     typography: {
         fontFamily: ["Inter", "sans-serif"].join(",")
+        // fontFamily: ["Lato", "sans-serif"].join(",")
         // fontFamily: ["Merriweather", "serif"].join(",")
     },
     shape: {

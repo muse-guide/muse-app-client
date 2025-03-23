@@ -23,7 +23,6 @@ export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
 
     const getExhibitionsAsync = async (lang: string, institutionId?: string, nextPageKey?: string) => {
         if (!institutionId) return;
-        if (exhibitions.length > 0) return;
         setLoading(true);
         try {
             const results = await exhibitionService.getExhibitionsFor(institutionId, lang, nextPageKey);
@@ -52,7 +51,7 @@ export const ExhibitionList = ({institutionId}: { institutionId?: string }) => {
         <Stack
             bgcolor={theme.palette.background.default}
             width={"100%"}
-            pt={2}
+            pt={3}
             pb={3}
             px={3}
             gap={3}

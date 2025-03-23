@@ -94,7 +94,7 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
                 <Stack mt={-1.5}>
                     <Stack direction={"row"} justifyContent={"space-around"} alignItems={"center"}>
                         <IconButton onClick={rewind10Sec} disabled={!audioAvailable}>
-                            <Replay10RoundedIcon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
+                            <Replay10RoundedIcon sx={{fontSize: 52}} color={audioAvailable ? "secondary" : "disabled"}/>
                         </IconButton>
                         <IconButton onClick={handlePlayPause} disabled={!audioAvailable}>
                             {isPlaying
@@ -103,7 +103,7 @@ export const AudioPlayer = ({audioUrl}: { audioUrl?: string }) => {
                             }
                         </IconButton>
                         <IconButton onClick={forward10Sec} disabled={!audioAvailable}>
-                            <Forward10RoundedIcon sx={{fontSize: 56}} color={audioAvailable ? "secondary" : "disabled"}/>
+                            <Forward10RoundedIcon sx={{fontSize: 52}} color={audioAvailable ? "secondary" : "disabled"}/>
                         </IconButton>
                     </Stack>
                 </Stack>

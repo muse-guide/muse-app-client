@@ -1,6 +1,6 @@
+import React, {useCallback, useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {useNavigate} from "react-router-dom";
-import React, {useEffect, useState} from "react";
 import {Exhibit} from "../../model/Exhibit";
 import {exhibitService} from "../../service/ExhibitService";
 import {Box, Chip, IconButton, InputAdornment, Stack, TextField, Typography, Zoom} from "@mui/material";
@@ -17,44 +17,54 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
     const theme = useTheme();
     const [exhibits, setExhibits] = useState<Exhibit[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [moreloading, setMoreLoading] = useState<boolean>(false);
     const [nextPageKey, setNextPageKey] = useState<string | undefined>(undefined);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        getExhibitsAsync(i18n.language, exhibitionId, nextPageKey);
-    }, [i18n.language, exhibitionId]);
-
-    const getExhibitsAsync = async (lang: string, exhibitionId?: string, nextPageKey?: string, number?: number) => {
+    const getExhibitsAsync = useCallback(async (lang: string, exhibitionId?: string, number?: number) => {
         if (!exhibitionId) return;
-        if (exhibits.length > 0) return
         setLoading(true);
         try {
-            const results = await exhibitService.getExhibitsFor(exhibitionId, lang, nextPageKey, number);
-            if (nextPageKey) {
-                setExhibits(prevState => prevState.concat(results.items as Exhibit[]));
-            } else {
-                setExhibits(results.items as Exhibit[]);
-            }
-            setNextPageKey(results.nextPageKey)
+            const results = await exhibitService.getExhibitsFor(exhibitionId, lang, undefined, number);
+            setExhibits(results.items as Exhibit[]);
+            setNextPageKey(results.nextPageKey);
         } catch (err) {
             console.error(`Failed to retrieve exhibits with error: ${err}`);
         } finally {
             setLoading(false);
         }
-    };
+    }, []);
+
+    const getMoreExhibitsAsync = useCallback(async (lang: string, nextPageKey: string, exhibitionId?: string) => {
+        if (!exhibitionId) return;
+        setMoreLoading(true);
+        try {
+            const results = await exhibitService.getExhibitsFor(exhibitionId, lang, nextPageKey);
+            setExhibits(prevState => prevState.concat(results.items as Exhibit[]));
+            setNextPageKey(results.nextPageKey);
+        } catch (err) {
+            console.error(`Failed to retrieve exhibits with error: ${err}`);
+        } finally {
+            setMoreLoading(false);
+        }
+    }, []);
+
+    useEffect(() => {
+        getExhibitsAsync(i18n.language, exhibitionId);
+    }, [i18n.language, exhibitionId, getExhibitsAsync]);
 
     const onLoadMore = nextPageKey ? () => {
-        getExhibitsAsync(i18n.language, exhibitionId, nextPageKey);
-    } : undefined
+        getMoreExhibitsAsync(i18n.language, nextPageKey, exhibitionId);
+    } : undefined;
 
     const onSearch = (searchTerm?: number) => {
-        getExhibitsAsync(i18n.language, exhibitionId, undefined, searchTerm)
-    }
+        getExhibitsAsync(i18n.language, exhibitionId, searchTerm);
+    };
 
     const onSearchCancel = () => {
         setShowSearch(false);
-        getExhibitsAsync(i18n.language, exhibitionId)
-    }
+        getExhibitsAsync(i18n.language, exhibitionId);
+    };
 
     const moveToExhibitPage = (exhibitId: string) => {
         navigate(`/exhibits/${exhibitId}`);
@@ -72,7 +82,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
             flexGrow={1}
         >
             <Stack position={"relative"}>
-                {showSearch && <Box sx={{width: "100%", paddingBottom: 1}}>
+                {showSearch && <Box sx={{width: "100%", paddingBottom: 0}}>
                     <Zoom in={showSearch}>
                         <Stack width={"100%"}>
                             <SearchExhibit
@@ -82,7 +92,7 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
                         </Stack>
                     </Zoom>
                 </Box>}
-                {!showSearch && <Stack direction={"row"} justifyContent={"space-between"} paddingBottom={0} alignItems={"center"} width={"100%"}>
+                {!showSearch && <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} width={"100%"}>
                     <Typography variant="body1" fontWeight={'bold'}>{t("exhibits")}</Typography>
                     <IconButton onClick={() => setShowSearch(!showSearch)}>
                         <SearchIcon color={"secondary"} fontSize={"medium"}/>
@@ -104,22 +114,26 @@ export const ExhibitList = ({exhibitionId}: { exhibitionId?: string }) => {
                         ))}
                 </Stack>}
             {onLoadMore &&
-                <LoadingButton
-                    loading={loading}
-                    sx={{fontSize: '15px'}}
-                    onClick={onLoadMore}
-                >
-                    <Stack color={theme.palette.secondary.dark} direction={"row"} alignItems={"center"} gap={0.5}>
-                        <ExpandMoreIcon/>
-                        <Typography variant={"subtitle2"} fontWeight={'normal'} sx={{textTransform: 'none'}}>
-                            {t('loadMore')}
-                        </Typography>
-                    </Stack>
-                </LoadingButton>
+                <Stack direction={"row"} display={"flex"} justifyContent={"center"}>
+                    <LoadingButton
+                        loading={moreloading}
+                        sx={{
+                            fontSize: '14px',
+                            textTransform: 'none',
+                            color: theme.palette.secondary.dark,
+                            width: 'auto',
+                        }}
+                        onClick={onLoadMore}
+                        startIcon={<ExpandMoreIcon/>}
+                        loadingPosition={"start"}
+                    >
+                        {t('loadMore')}
+                    </LoadingButton>
+                </Stack>
             }
         </Stack>
-    )
-}
+    );
+};
 
 const SearchExhibit = (
     {
@@ -138,14 +152,14 @@ const SearchExhibit = (
         if (!searchTerm) return;
         setSearching(true);
         onSearch(parseInt(searchTerm));
-    }
+    };
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
-        const number = parseInt(value)
-        const result = value === "" ? "" : (isNaN(number) ? "" : number.toString())
+        const number = parseInt(value);
+        const result = value === "" ? "" : (isNaN(number) ? "" : number.toString());
         setSearchTerm(result);
-    }
+    };
 
     return (
         <>
@@ -175,8 +189,6 @@ const SearchExhibit = (
                     }}
                 />
             }
-
         </>
-    )
-        ;
-}
+    );
+};

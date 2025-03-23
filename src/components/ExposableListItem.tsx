@@ -20,7 +20,7 @@ export const ExposableListItem = ({exposable, onClick, itemNumber}: { exposable:
                     src={imageUrl}
                     style={{
                         display: "block",
-                        borderRadius: '8px',
+                        borderRadius: '12px',
                         width: '100%',
                         maxWidth: '60px',
                         aspectRatio: '1 / 1',

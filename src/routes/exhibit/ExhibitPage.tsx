@@ -91,12 +91,12 @@ const ExhibitPage = () => {
                         ? <Stack width={"100%"} height={24} justifyContent={"center"}>
                             <Skeleton variant={"rectangular"} height={24} width={300}/>
                         </Stack>
-                        : exhibit?.subtitle ?? <Typography variant="body1" color={"textSecondary"}>{exhibit?.subtitle}</Typography>
+                        : exhibit?.subtitle && <Typography variant="body1" color={"textSecondary"}>{exhibit?.subtitle}</Typography>
                     }
                 </Stack>
 
                 {loading
-                    ? <Stack pt={1} width={"100%"} height={32} justifyContent={"center"}>
+                    ? <Stack pt={1.5} width={"100%"} height={46} alignItems={"start"} justifyContent={"center"}>
                         <Skeleton variant={"rectangular"} height={24} width={240}/>
                     </Stack>
                     : descAvailable &&
@@ -107,13 +107,13 @@ const ExhibitPage = () => {
                         direction={"row"}
                         justifyContent={"start"}
                         alignItems={"center"}
-                        pt={1}
+                        pt={1.5}
                     >
                         <Button
                             variant="text"
                             color={"inherit"}
                             sx={{textTransform: 'none'}}
-                            startIcon={<MenuBookRoundedIcon color={"inherit"} fontSize={"large"}/>}
+                            startIcon={<MenuBookRoundedIcon color={"secondary"} fontSize={"large"}/>}
                             onClick={descDialog.openDialog}
                         >
                             <Typography variant={"subtitle2"} color={"textSecondary"}>{t('learnMore')}</Typography>

@@ -25,13 +25,13 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                 justifyContent: "center",
                 maxHeight: "300px",
                 paddingTop: "32px",
-                paddingBottom: "24px",
+                paddingBottom: "16px",
                 marginTop: "-32px",
                 zIndex: 1,
                 backgroundColor: theme.palette.secondary.light,
                 borderTopLeftRadius: "24px",
                 borderTopRightRadius: "24px",
-                position: "relative"
+                position: "relative",
             }}
         >
             {!resourceLoading && exposable?.article &&
@@ -85,7 +85,7 @@ export const ExposableDetails = ({exposable, loading}: { exposable?: Exposable, 
                             variant="text"
                             color={"inherit"}
                             sx={{textTransform: 'none'}}
-                            startIcon={<MenuBookRoundedIcon color={"inherit"} fontSize={"large"}/>}
+                            startIcon={<MenuBookRoundedIcon color={"secondary"} fontSize={"large"}/>}
                             onClick={descDialog.openDialog}
                         >
                             <Typography variant={"subtitle2"} color={"textSecondary"}>{t('learnMore')}</Typography>

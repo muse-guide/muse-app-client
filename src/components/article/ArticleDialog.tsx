@@ -15,7 +15,7 @@ interface DescriptionDialogProps {
 export default function ArticleDialog(props: DescriptionDialogProps) {
     return (
         <Dialog fullScreen open={props.show} onClose={() => props.close()}>
-            <DialogContent sx={{paddingX: 3, paddingTop: 1}}>
+            <DialogContent sx={{width: '100%',paddingX: 3, paddingTop: 1}}>
                 <Stack
                     direction={"row"}
                     sx={{
